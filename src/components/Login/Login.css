@@ -1,0 +1,40 @@
+.login1{
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    align-items:center;
+    justify-content: right;
+    background-image: url("../../Images/login-2.jpg");
+    background-repeat: no-repeat;
+    background-size: 40%;
+    background-position: 100px;
+}
+.display4{
+    font-size: 30px;
+}
+.log{
+    padding: 10px;
+}
+.login1 .login2{
+    width: 400px;
+    height: 450px;
+    margin-right:100px;
+    backdrop-filter: blur(20px);
+    padding: 30px;
+    opacity: 0.9;
+    border-radius: 20px;
+}
+.login2 h3{
+    color: rgb(84, 179, 211);
+    margin-bottom: 30px;
+}
+@media (max-width:700px) {
+    .login1{
+        background-size: contain;
+        background-position:center;
+    }
+    .login1 .login2{
+        margin: auto;
+        border: 2px solid #75abfc;
+    }
+}

@@ -1,0 +1,56 @@
+body{
+    background-color: white;
+  }
+  
+  .listItems{
+      float:left;
+  }
+  .headerDiv{
+    position: fixed;
+    top:100px;
+    background-color: #0D6EFD;
+    width: 98.5%;
+    min-height: 70px;
+    margin-top: 0.1%;
+    margin:10px;
+ 
+  }
+  
+  .square{
+    margin:10px;
+  }
+  
+  .headerLabel{
+    color: white;
+    height: 5vh;
+    width:10%;
+    text-align:center;
+    float: left;
+    margin-right:10%;
+    margin-top: 1.5%;
+    font-size: 112%;
+    
+  }
+  
+  .componentdiv{
+    background-color:rgba(220, 220, 220, 0.719);
+    width: 98.5%;
+    height:10vh;
+    min-height: 5px;
+    margin-top: 4%;
+    margin-left:10px;
+    
+  }
+  
+  .labeldiv{
+    color:black;
+    height: 5vh;
+    width: 10%;
+    text-align: center;
+    float: left;
+    margin-right: 10%;
+    margin-top: 2%;
+    
+  }
+  
+  

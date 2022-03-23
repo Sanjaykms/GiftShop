@@ -1,0 +1,75 @@
+import React from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import {Link} from 'react-router-dom';
+import { FaEdit , FaTrash} from "react-icons/fa"
+//import { FontAwesomeIcon } from "@fortawesome/free-solid-svg-icons";
+//import {faedit} from "@fortawesome/free-solid-svg-icons";
+//<FontAwesomeIcon icon={faedit}/>
+//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
+//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
+//git commit -am " "
+//git push origin Prabhu
+
+function Myorder(){
+    return(
+        <div class=" text-center " >
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary text-light">
+  <div class="container-fluid  text-center">
+    <a class="navbar-brand text-center"  href="#">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+      <div class="navbar-nav ">
+        <Link to="/Myorder" class="nav-link active" aria-current="page" >My orders</Link>
+        <Link to="/Signup" class="nav-link">Logout</Link>
+      </div>
+   </div> 
+</div>
+</nav>
+<br></br>
+<br></br>
+
+<nav class="navbar navbar-expand navbar-dark bg-primary text-light w-75 navbar-nav mx-auto rounded-3 mb-3">
+  <div class="container-fluid ">
+    <a class="navbar-brand text-left" >Gift Name</a>
+    <a class="navbar-brand text-center" >Price</a>
+    <a class="navbar-brand text-right" >Quantity</a>
+</div>
+</nav>
+
+
+<div class="container-fluid float-left   w-75 text-left    bg-#0dcaf0;">
+
+
+<div class="row mb-3 text-left bg-gray">
+<div class="col h4  text-center" id="product1">1.Acrylic Board</div>
+<div class="col h4 text-center">Rs.200</div>
+<div class="col h4 text-right">3Ps &nbsp;<FaEdit onclick="" id="editOrder"/>  <FaTrash  id="deleteOrder"/>
+</div>
+ 
+</div>
+
+  
+<div class="row mb-3 text-left bg-gray" >
+<div class="col h4 text-center" id="product2">2.Wooden Board</div>
+<div class="col h4 text-center">Rs.200</div>
+<div class="col h4 text-right">10Ps &nbsp;    <FaEdit id="editOrder"/>  <FaTrash id="deleteOrder"/></div>
+</div>
+
+
+
+</div>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<div class="position-relative w-75">
+<button class="btn btn-primary position-absolute bottom-40 end-0" > Pay</button>
+</div>
+</div>
+
+    );
+}
+export default Myorder;

@@ -1,0 +1,56 @@
+
+const initialValues={user: "", email: "", username: "", mobilenumber: "", password: "", confirmpassword: ""};
+const [formValues, setFormValues] = useState(initialValues);
+const [formErrors, setFormErrors] = useState({});
+const [isSubmit,setIsSubmit] = useState(false);
+
+
+const handleChange = (e) =>{
+        
+        const {name,value} = e.target;
+        setFormValues({...formValues, [name]:value});
+       
+};
+
+const handleSubmit = (e) => {
+        e.preventDefault();
+        setFormErrors(validate(formValues));
+        setIsSubmit(true);
+};
+
+useEffect(() =>{
+        console.log(formErrors);
+        if(Object.keys(formErrors).length === 0 && isSubmit){
+                console.log(formValues);
+        }
+},[formErrors]);
+
+
+const validate = (values) => {
+    const errors = {};
+    const regex = /^[^\s@]+@[^\s@]+\. [^\s@]{2,}$/i;
+    if (!values.userName.trim()) {
+      errors.userName = "Username is required!";
+    }
+    if (!values.email) {
+      errors.email = "E-mail is required!";
+    }
+    if (regex.test(values.email)) {
+      errors.email = "Enter a valid E-mail";
+    }
+
+    if (!values.password) {
+      errors.password = "Password is required!";
+    } else if (values.password.lenght < 5) {
+      errors.password = "Password must be more than 5 characters!";
+    } else if (!values.password.length > 10) {
+      errors.password = "Password cannot exceed more than 10 characters!";
+    }
+    if (!values.mobileNumber) {
+      errors.mobileNumber = "MobileNumber is required!";
+    }
+    if (!values.password1) {
+      errors.password = "Password is required!";
+    }
+    return errors;
+  };

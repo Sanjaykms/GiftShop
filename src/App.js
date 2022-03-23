@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import React from "react";
+import Auth from "./components/Auth";
+import UserContextProvider from "./components/Assets/user-context";
+import AuthContextProvider from "./components/Assets/auth-context";
+import {ProductsContextProvider} from "./components/Assets/products-context";
+import {CartContextProvider } from "./components/Assets/cart-context";
+import { MyOrdersContextProvider } from './components/Assets/myorders-context';
+import { ThemeContextProvider } from './components/Assets/themes-context';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <AuthContextProvider>
+            <UserContextProvider>
+              <ProductsContextProvider>
+                <CartContextProvider>
+                  <MyOrdersContextProvider>
+                    <ThemeContextProvider>
+                      <Auth/>
+                    </ThemeContextProvider>
+                  </MyOrdersContextProvider>
+                </CartContextProvider>
+              </ProductsContextProvider>
+            </UserContextProvider>
+          </AuthContextProvider>
+          </div>
   );
-}
-
-export default App;
+}  
+export default App; 
+ 

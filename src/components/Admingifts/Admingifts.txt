@@ -1,0 +1,141 @@
+import React ,{useState} from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import {Link} from 'react-router-dom';
+import { FaEdit , FaTrash} from "react-icons/fa"
+import { useProductsCxt } from "../UserManagement/Assets/products-context";
+
+export default function Admingifts() {
+  const productsCxt = useProductsCxt();
+  const [image, setImage] = useState("");
+  const [productName, setProductName] = useState("");
+  const [cost, setCost] = useState("");
+  const [quantity, setQuantity] = useState("");
+
+  const submit = (e) => {
+    e.preventDefault();
+    const newProduct = {
+      url: image,
+      productName: productName,
+      price: cost,
+      quantity: quantity,
+    };
+    productsCxt.productsDispatchFn({ type: "ADD_PRODUCT", value: newProduct });
+    setImage("");
+    setProductName("");
+    setCost("");
+    setQuantity("");
+  };
+    return(
+        <div class=" text-center " >
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary text-light">
+  <div class="container-fluid  text-center">
+    <a class="navbar-brand text-center"  href="#">Gifts</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+      <div class="navbar-nav ">
+        <a class="nav-link active" aria-current="page" href="#">Theme</a>
+        <a class="nav-link active" aria-current="page" href="#">ViewUsers</a>
+        <a class="nav-link active" aria-current="page" href="#">Orders</a>
+        <Link to="/Signup" class="nav-link">Logout</Link>
+      </div>
+   </div> 
+</div>
+</nav>
+<br></br>
+<br></br>
+
+
+
+<div class="container-fluid mb-5">
+<div class="row " >
+
+<div class="col-8 mb-5">
+
+<nav class="navbar navbar-expand navbar-dark bg-primary text-light navbar-nav mx-auto rounded-3 mb-3">
+  <div class="container-fluid ">
+    <a class="navbar-brand text-left" >Image</a>
+    <a class="navbar-brand text-left" >Gift Name</a>
+    <a class="navbar-brand text-center" >Price</a>
+    <a class="navbar-brand text-right" >Quantity</a>
+</div>
+</nav>
+
+
+
+<div class="row mb-3 text-left">
+<div class="col margin-left"><img src="https://via.placeholder.com/150"></img></div>
+<div class="col h4  text-center" id="product1">1.Acrylic Board</div>
+<div class="col h4 text-center">Rs.200</div>
+<div class="col h4 text-right">3Ps &nbsp;<FaEdit onclick="" id="editOrder"/>  <FaTrash  id="deleteOrder"/></div>
+</div>
+
+  
+<div class="row mb-3" >
+<div class="col"><img src="https://via.placeholder.com/150"></img></div>    
+<div class="col h4 text-center" id="product2">2.Wooden Board</div>
+<div class="col h4 text-center">Rs.200</div>
+<div class="col h4 text-right">3Ps &nbsp;    <FaEdit id="editOrder"/>  <FaTrash id="deleteOrder"/></div></div>
+
+
+<div class="row mb-3" >
+<div class="col"><img src="https://via.placeholder.com/150"></img></div>    
+<div class="col h4 text-center" id="product2">3.Frame Boards</div>
+<div class="col h4 text-center">Rs.200</div>
+<div class="col h4 text-right">3Ps &nbsp;    <FaEdit id="editOrder"/>  <FaTrash id="deleteOrder"/></div></div>
+
+
+
+<div class="row mb-3" >
+<div class="col"><img src="https://via.placeholder.com/150"></img></div>    
+<div class="col h4 text-center" id="product2">4.Acrylic Light</div>
+<div class="col h4 text-center">Rs.200</div>
+<div class="col h4 text-right">3Ps &nbsp;    <FaEdit id="editOrder"/>  <FaTrash id="deleteOrder"/></div></div>
+</div>
+
+
+
+
+
+
+
+<form class="col-4 rounded-5 bg-info" onSubmit={submit}>
+<div class="h4 mb-5 text-light">Add Gift</div>
+<div class="input-group   mb-5">
+  <input type="text" class="form-control"  placeholder="enter the gift name"></input>
+</div>
+
+<div class="input-group   mb-5">
+  <input type="text" class="form-control"  placeholder="enter the gift price"></input>
+</div>
+
+<div class="input-group   mb-5">
+  <input type="text" class="form-control"  placeholder="enter the gift image url"></input>
+</div>
+
+<div class="input-group   mb-5">
+  <input type="text" class="form-control"  placeholder="enter the product quantity"></input>
+</div>
+
+<div class="input-group   mb-5">
+  <input type="text" class="form-control"  placeholder="enter the gift details"></input>
+</div>
+<button type="submit" class="btn btn-primary">Add</button>
+</form>
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+    );
+}
