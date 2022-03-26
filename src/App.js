@@ -7,6 +7,7 @@ import {ProductsContextProvider} from "./components/Assets/products-context";
 import {CartContextProvider } from "./components/Assets/cart-context";
 import { MyOrdersContextProvider } from './components/Assets/myorders-context';
 import { ThemeContextProvider } from './components/Assets/themes-context';
+import { ReviewContextProvider } from './components/Assets/review-context';
 function App() {
   return (
     <div className="App">
@@ -16,7 +17,9 @@ function App() {
                 <CartContextProvider>
                   <MyOrdersContextProvider>
                     <ThemeContextProvider>
-                      <Auth/>
+                      <ReviewContextProvider>
+                        <Auth />
+                      </ReviewContextProvider>
                     </ThemeContextProvider>
                   </MyOrdersContextProvider>
                 </CartContextProvider>

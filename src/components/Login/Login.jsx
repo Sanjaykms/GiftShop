@@ -17,24 +17,11 @@ const Login = (props) => {
     const authCxt = useAuthCxt();
     const navigate = useNavigate();
   
-    const checkAdmin = (userid, password) => {
-      if (userid === "Admin@gmail.com" && password === "admin") {
-        authCxt.loginHandler();
-        authCxt.changeAdminHandler(true);
-        navigate("/Admingifts ");
-        return true;
-      }
-      return false;
-    };
-  
     const TouchEvent = (event) => {
       event.preventDefault();
       setisError(false);
       const userid = Userid.current.value;
       const password = Password.current.value;
-      if (checkAdmin(userid, password)) {
-        return;
-      }
       if (!(userid && password)) {
         setisError(true);
         return;
@@ -45,8 +32,12 @@ const Login = (props) => {
           }),
         };
         if (password === tempUser.password) {
-          authCxt.loginHandler();
-          navigate("/Homepage");
+          authCxt.loginHandler(tempUser.userId, tempUser.role);
+          if (tempUser.role === "admin") {
+            navigate("/Admingifts");
+          } else {
+            navigate("/Homepage");
+          }
         } else {
           alert("Username or password is wrong");
         }

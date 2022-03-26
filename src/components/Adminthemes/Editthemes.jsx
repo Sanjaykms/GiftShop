@@ -38,7 +38,7 @@ export default function EditPage({ item, onEditTheme, cou }) {
           cursor: "pointer",
         }}
       />
-      <div className="modal" id={"modal" + cou}>
+      <div className="modal" id={"modal" + cou} style={{marginTop:"100px"}}>
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">

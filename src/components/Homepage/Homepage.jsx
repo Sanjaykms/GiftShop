@@ -7,10 +7,11 @@ import { useAuthCxt } from "../Assets/auth-context";
 
 function HomePage(props) {
   const authCxt = useAuthCxt();
+  const { userInfo, isLogged } = authCxt;
   let navbar;
-  if (authCxt.isAdmin) {
+  if (isLogged && userInfo.userType === "admin") {
     navbar = <AdminNavBar />;
-  } else {
+  } else if (isLogged && userInfo.userType === "customer") {
     navbar = <UserNavbar />;
   }
   return (

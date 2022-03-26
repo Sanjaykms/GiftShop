@@ -1,56 +1,29 @@
-body{
-    background-color: white;
-  }
-  
-  .listItems{
-      float:left;
-  }
-  .headerDiv{
-    position: fixed;
-    top:100px;
-    background-color: #0D6EFD;
-    width: 98.5%;
-    min-height: 70px;
-    margin-top: 0.1%;
-    margin:10px;
- 
-  }
-  
-  .square{
-    margin:10px;
-  }
-  
-  .headerLabel{
-    color: white;
-    height: 5vh;
-    width:10%;
-    text-align:center;
-    float: left;
-    margin-right:10%;
-    margin-top: 1.5%;
-    font-size: 112%;
-    
-  }
-  
-  .componentdiv{
-    background-color:rgba(220, 220, 220, 0.719);
-    width: 98.5%;
-    height:10vh;
-    min-height: 5px;
-    margin-top: 4%;
-    margin-left:10px;
-    
-  }
-  
-  .labeldiv{
-    color:black;
-    height: 5vh;
-    width: 10%;
-    text-align: center;
-    float: left;
-    margin-right: 10%;
-    margin-top: 2%;
-    
-  }
-  
-  
+.width {
+  width: 90%;
+}
+
+.table {
+  width: 100%;
+}
+
+.header {
+  background-color: #0D6EFD;
+  color: white;
+  font-size: 18px;
+  height: 4rem;
+  padding-top: 1rem;
+  width: 100%;
+  text-align: center;
+}
+img{
+  width: 100px;
+}
+.content {
+  text-align: center;
+}
+
+.tablerow {
+  height: 5rem;
+  border-bottom: 2px solid grey;
+  border-width: 80%;
+}

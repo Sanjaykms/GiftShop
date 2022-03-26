@@ -21,7 +21,13 @@ const CartItem = (props) => {
         <MdModeEdit
           color="blue"
           style={{ cursor: "pointer" }}
-          onClick={() => props.onOpen(props.id)}
+          onClick={() => {
+            if (props?.place === "cart") {
+              props.onOpen(props.cartItemId);
+            } else {
+              props.onOpen(props.orderId);
+            }
+          }}
         />
         {props?.place === "cart" ? (
           <MdDelete
@@ -32,13 +38,13 @@ const CartItem = (props) => {
             }}
             color="red"
             onClick={() => {
-              props.onDelete(props.id);
+              props.onDelete(props.cartItemId);
             }}
           />
         ) : (
           <button
             className={classes.cancel}
-            onClick={() => props.onCancel(props.id, props.quantity)}
+            onClick={() => {props.onCancel(props.orderId, props.giftId, props.quantity)}}
           >
             Cancel Order
           </button>
@@ -46,9 +52,9 @@ const CartItem = (props) => {
         {props?.place === "cart" && (
           <button
             className={classes.btn}
-            onClick={() => props.onPlaceOrder(props.id)}
+            onClick={() => props.onPlaceOrder(props.cartItemId)}
           >
-            Place Order
+            Add Theme
           </button>
         )}
       </div>

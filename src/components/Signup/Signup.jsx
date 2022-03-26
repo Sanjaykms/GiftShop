@@ -7,11 +7,11 @@ import { Link, useNavigate } from "react-router-dom";
 
 //import img1 from "../../images/Signup-image.png";
 import { useUserCxt } from "../Assets/user-context";
+import useGenerateId from "../../Hooks/generate-id";
 import "./Signup.css";
 
 
         const intialValues = {
-                userType: "",
                 email: "",
                 userName: "",
                 mobileNumber: "",
@@ -22,6 +22,7 @@ import "./Signup.css";
               const Signup = () => {
                 const userCxt = useUserCxt();
                 const navigate = useNavigate();
+                const generateId = useGenerateId();
                 const [formValues, setFormValues] = useState(intialValues);
                 const [formErrors, setFormErrors] = useState({ intialValues });
                 // const [isSubmit, setIsSubmit] = useState(false);
@@ -33,11 +34,13 @@ import "./Signup.css";
               
                 const createUserObj = (value) => {
                   const tempUser = {};
-                  tempUser.userType=value.userType;
+                  tempUser.userId= generateId("U");
                   tempUser.email = value.email;
                   tempUser.userName = value.userName;
                   tempUser.mobileNumber = value.mobileNumber;
                   tempUser.password = value.password;
+                  tempUser.active=true;
+                  tempUser.role="customer";
                   return tempUser;
                 };
               
@@ -69,9 +72,6 @@ import "./Signup.css";
 const validate = (values) =>{
         const errors ={};
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-        if(!values.user){
-                errors.user = "User/Admin is required!";
-        }
         if(!values.email){
                 errors.email = "Email is required!";
         }
@@ -115,14 +115,14 @@ const validate = (values) =>{
         <br></br>
     <div class="form-control form-control-lg sign2">
     <h3>Register</h3>
-        <div class="input-group mb-3 ">
+        {/*<div class="input-group mb-3 ">
                 <select name="user" class="form-select" onChange={handleChange} autoFocus>
                         <option selected hidden>Enter admin/user</option>
                         <option value="admin">Admin</option>
                         <option value="User" >User</option>
                 </select>
-        </div>
-        <p class="text-danger text-start fs-6">{formErrors.user}</p>
+    </div>
+        <p class="text-danger text-start fs-6">{formErrors.user}</p>*/}
         <div id="email" class="input-group mb-3" className="field">
                 <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter email" value={formValues.email} onChange={handleChange}/>
         </div>

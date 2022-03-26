@@ -2,117 +2,100 @@ import React, { useContext, useReducer } from "react";
 
 const productDetails = [
   {
-    id: "product-1",
-    url: "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MKUQ3_VW_PF+watch-45-alum-midnight-nc-7s_VW_PF_WF_CO?wid=1400&hei=1400&trim=1,0&fmt=p-jpg&qlt=95&.v=1632171068000,1631661680000",
-    productName: "Watch I7",
-    price: "1000",
-    quantity: 10,
+    giftId: "product-1",
+    url: "https://5.imimg.com/data5/QX/OQ/MY-35834836/acrylic-name-plate-500x500.jpg",
+    productName: "Acrylic Light",
+    price: "300",
+    quantity: "10",
     giftDetails:"",
   },
   {
-    id: "product-2",
-    url: "https://media.istockphoto.com/photos/blank-metal-trinket-with-a-ring-for-a-key-heart-shape-3d-picture-id961988456?k=20&m=961988456&s=612x612&w=0&h=MQFsQFYhToIubwY_igkKsZ6JmQKmx1JXP3lP22V9lKs=",
-    productName: "Key chain",
-    price: "12.99",
-    quantity: 8,
+    giftId: "product-2",
+    url: "https://5.imimg.com/data5/SELLER/Default/2021/9/TH/HJ/JH/27990694/door-name-plate-250x250.jpg",
+    productName: "Wooden Board",
+    price: "200",
+    quantity: "8",
     giftDetails:"",
   },
   {
-    id: "product-3",
-    url: "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F23%2F2019%2F10%2F21%2Fhow-to-clean-water-bottle.jpg",
-    productName: "Water bottle",
-    price: "48.54",
-    quantity: 50,
+    giftId: "product-3",
+    url: "https://hitchki.in/wp-content/uploads/Stainless-steal-name-plate.jpg",
+    productName: "Steel Printed",
+    price: "200",
+    quantity: "50",
     giftDetails:"",
   },
   {
-    id: "product-4",
-    url: "https://images.unsplash.com/photo-1532007271951-c487760934ae?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bGVkJTIwYnVsYnxlbnwwfHwwfHw%3D&w=1000&q=80",
-    productName: "LED lamp",
-    price: "60.21",
-    quantity: 20,
+    giftId: "product-4",
+    url: "https://ii1.pepperfry.com/media/catalog/product/c/u/1100x1210/customizable-brown-wood-name-plate-by-karigaari-india-customizable-brown-wood-name-plate-by-karigaar-tafok7.jpg",
+    productName: "Wooden Row",
+    price: "150",
+    quantity: "20",
     giftDetails:"",
   },
   {
-    id: "product-5",
-    url: "https://i.ytimg.com/vi/mcbAx4w3QmA/maxresdefault.jpg",
-    productName: "Handmade gifts",
-    price: "35.12",
-    quantity: 5,
+    giftId: "product-5",
+    url: "https://cdn.shopify.com/s/files/1/0430/3899/8682/products/vk-np.jpg?v=1594469179",
+    productName: "Acrylic Hard",
+    price: "200",
+    quantity: "5",
     giftDetails:"",
   },
   {
-    id: "product-6",
-    url: "https://m.media-amazon.com/images/I/61VFk0kwpKL._SY355_.jpg",
-    productName: "Photo-frame",
-    price: "70.00",
-    quantity: 3,
+    giftId: "product-6",
+    url: "https://static.connect2india.com/c2icd/product_resources/images/steel-name-board.jpg",
+    productName: "Stainless Steel",
+    price: "300",
+    quantity: "1",
     giftDetails:"",
   },
   {
-    id: "product-7",
-    url: "https://static-01.daraz.pk/p/f65873c3aabe04a378d3be9b57f16a32.jpg",
-    productName: "Wrist watch (classic)",
-    price: "150.87",
-    quantity: 15,
+    giftId: "product-7",
+    url: "https://5.imimg.com/data5/BA/WI/MY-25071105/modern-nameplate-500x500.jpg",
+    productName: "Modern Nameboard",
+    price: "150",
+    quantity: "15",
     giftDetails:"",
   },
   {
-    id: "product-8",
-    url: "https://i.pinimg.com/originals/08/00/6d/08006d49c5482843555b865ddb162263.jpg",
-    productName: "Wrist watch (Formal)",
-    price: "120.87",
-    quantity: 12,
+    giftId: "product-8",
+    url: "http://www.lowerroadsigns.co.uk/uploaded_images/Dusek-Main-sign-770758.jpg",
+    productName: "3D Nameboard",
+    price: "120",
+    quantity: "12",
     giftDetails:"",
   },
 ];
 
 const ProductsContext = React.createContext({
+  isLoading:false,
   productsList: [],
   productsDispatchFn: () => {},
 });
 
 const productsReducer = (prevState, action) => {
   let updatedArray;
-  if (action.type === "ADD_PRODUCT") {
-    action.value.id = `product-${prevState.length + 1}`;
+  if (action.type === "GET_PRODUCTS") {
+    updatedArray = [...action.value];
+    return updatedArray;
+  } else if (action.type === "ADD_PRODUCT") {
     const newProduct = { ...action.value };
     updatedArray = [...prevState, newProduct];
     return updatedArray;
   } else if (action.type === "EDIT_PRODUCT") {
     const exsistedProduct = prevState.find((item) => {
-      return item.id === action.value.id;
+      return item.giftId === action.value.giftId;
     });
     const index = prevState.indexOf(exsistedProduct);
     updatedArray = [...prevState];
-    updatedArray[index] = action.value;
+    updatedArray[index] = { ...action.value };
     return updatedArray;
   } else if (action.type === "DELETE_PRODUCT") {
     updatedArray = [
       ...prevState.filter((item) => {
-        return item.id !== action.value;
+        return item.giftId !== action.value;
       }),
     ];
-    return updatedArray;
-  } else if (action.type === "PLACE_ORDER") {
-    const exsistedProduct = prevState.find((item) => {
-      return item.id === action.value.id;
-    });
-    const index = prevState.indexOf(exsistedProduct);
-    const tempProduct = { ...exsistedProduct };
-    tempProduct.quantity = tempProduct.quantity - action.value.quantity;
-    updatedArray = [...prevState];
-    updatedArray[index] = tempProduct;
-    return updatedArray;
-  } else if (action.type === "CANCEL_ORDER") {
-    const exsistedProduct = prevState.find((item) => {
-      return item.id === action.value.id;
-    });
-    const index = prevState.indexOf(exsistedProduct);
-    const tempProduct = { ...exsistedProduct };
-    tempProduct.quantity = tempProduct.quantity + action.value.quantity;
-    updatedArray = [...prevState];
-    updatedArray[index] = tempProduct;
     return updatedArray;
   }
   return prevState;

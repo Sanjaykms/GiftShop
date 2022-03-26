@@ -12,36 +12,34 @@ import Cart from "./Myorder/Cart";
 import HomePage from './Homepage/Homepage.jsx';
 import AdminOrders from "./Admingifts/AdminOrders";
 import AdminThemes from "./Adminthemes/Adminthemes";
-
+import ViewProduct from "./Review Management/ViewProduct";
 const Auth = () => {
     const authCxt = useAuthCxt();
+    const { userInfo, isLogged } = authCxt;
     return (
-
-
         <Fragment>
         
          <Routes>
          <Route path="/Signup" element={<Signup/>}>  </Route>  
          <Route path="/"  element={<Navigate to="/Login"/>}>   </Route>
          <Route index path="/Login" element={<Login />} />
-
-        
-
+         
          <Route path="/*" element={<HomePage />}>
-           <Route element={<RequireAuth role={authCxt.isLogged} />}>
+         <Route
+            element={
+              <RequireAuth role={userInfo.userType} isLogged={isLogged} />
+            }
+          >
             <Route path="Homepage" element={<ProductList />}> </Route>
+            <Route path=":productId" element={<ViewProduct />} />
             <Route path="Cart/*" element={<Cart/>}> </Route>
             <Route path="MyOrders/*" element={<MyOrder />}> </Route>
-          </Route> 
-
-          <Route element={<RequireAuth role={authCxt.isAdmin} />}>
             <Route path="Admingifts"  element={<Admingifts/>}>  </Route>
             <Route path="admin/orders/*" element={<AdminOrders/>}/>
             <Route path="admin/themes/*" element={<AdminThemes/>}/>
             <Route path="admin/users-list/*" element={<DisplayUser/>}/>
+          </Route> 
           </Route>
-          </Route>
-
         </Routes>
         </Fragment>
 

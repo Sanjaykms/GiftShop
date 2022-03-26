@@ -1,30 +1,42 @@
 import React, { useState } from "react";
 import Button from "../ModalOverlay/Button";
 import { useProductsCxt } from "../Assets/products-context";
-import { gift } from "fontawesome";
-
+import useGenerateId from "../../Hooks/generate-id";
 export default function AddItem() {
   const productsCxt = useProductsCxt();
+  const generateId = useGenerateId();
   const [image, setImage] = useState("");
   const [productName, setProductName] = useState("");
   const [cost, setCost] = useState("");
   const [quantity, setQuantity] = useState("");
   const [giftDetails, setGiftDetails] = useState("");
   const submit = (e) => {
-    e.preventDefault();
-    const newProduct = {
-      url: image,
-      productName: productName,
-      price: cost,
-      quantity: quantity,
-      giftDetails:giftDetails,
-    };
-    productsCxt.productsDispatchFn({ type: "ADD_PRODUCT", value: newProduct });
-    setImage("");
-    setProductName("");
-    setCost("");
-    setQuantity("");
-    setGiftDetails("");
+     e.preventDefault();
+    if (
+      image !== "" &&
+      productName !== "" &&
+      cost !== "" &&
+      quantity !== "" &&
+      giftDetails !== ""
+    ) {
+      const newProduct = {
+        giftId: generateId("P"),
+        url: image,
+        productName: productName,
+        price: cost,
+        giftDetails:giftDetails,
+        quantity: quantity,
+      };
+      productsCxt.productsDispatchFn({ type: "ADD_PRODUCT", value: newProduct });
+
+      setImage("");
+      setProductName("");
+      setCost("");
+      setQuantity("");
+      setGiftDetails("");
+    } else {
+      alert("Please Enter all details");
+    }
   };
 
   return (

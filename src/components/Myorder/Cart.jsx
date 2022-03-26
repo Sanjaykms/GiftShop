@@ -8,16 +8,19 @@ import EmptyPage from "./Display/EmptyPage";
 import { useCartCxt } from "../Assets/cart-context";
 import { useMyOrdersCxt } from "../Assets/myorders-context";
 import { useProductsCxt } from "../Assets/products-context";
+import { useAuthCxt } from "../Assets/auth-context";
 import Placeorder from '../Placeorder/Placeorder';
-
+import useGenerateId from "../../Hooks/generate-id";
 const Cart = () => {
-  const [orderId,setOrderId]=useState("");
+  const [ordeId,setOrderId]=useState("");
   const [priceVal,setPriceVal]=useState("");
   const [haveToEditProduct, setHaveToEditProduct] = useState({});
   const cartCxt = useCartCxt();
+  const authCxt = useAuthCxt();
   const myordersCxt = useMyOrdersCxt();
   const navigate = useNavigate();
   const productsCxt = useProductsCxt();
+  const generateId = useGenerateId();
 
   let element;
 
@@ -25,25 +28,25 @@ const Cart = () => {
     return (quantity * price).toFixed(2);
   };
 
-  const findProduct = (productId) => {
+  const findProduct = (cartItemId) => {
     return {
       ...cartCxt.cartItems.find((item) => {
-        return productId === item.id;
+        return cartItemId === item.cartItemId;
       }),
     };
   };
 
-  const removeHandler = (productId) => {
+  const removeHandler = (cartItemId) => {
     cartCxt.cartDispatchFn({
       type: "REMOVE_FROM_CART",
-      value: productId,
+      value: cartItemId,
     });
   };
 
-  const openEditOverlayHandler = (productId) => {
-    const product = findProduct(productId);
+  const openEditOverlayHandler = (cartItemId) => {
+    const product = findProduct(cartItemId);
     setHaveToEditProduct(product);
-    navigate(`/Cart/${productId}`);
+    navigate(`/Cart/${cartItemId}`);
   };
 
   const increceProductQuantity = () => {
@@ -66,7 +69,7 @@ const Cart = () => {
       );
       setHaveToEditProduct(tempProduct);
     } else {
-      removeHandler(haveToEditProduct.id);
+      removeHandler(haveToEditProduct.cartItemId);
       closeEditOverlayHandler();
     }
   };
@@ -87,22 +90,34 @@ const Cart = () => {
   }
   const placeOrderHandler = () => {
     
-    const product = findProduct(orderId);
-    const product1=product;
-    product1.totalAmount=parseFloat(product1.totalAmount)+parseFloat(priceVal);
+    const product = findProduct(ordeId)
     const exsistedProduct = {
       ...productsCxt.productsList.find((item) => {
-        return product.id === item.id;
+        return product.giftId === item.giftId;
       }),
     };
-    
+    const orderedProduct = {
+      orderId: generateId("ORDER"),
+      userId: authCxt.userInfo.userId,
+      giftId: product.giftId,
+      productName: product.productName,
+      quantity: product.quantity,
+      price: product.price,
+      totalAmount: product.totalAmount,
+      url:product.url,
+      status: "Order placed",
+    };
+    const orderedProduct1=orderedProduct;
+    orderedProduct1.totalAmount=parseFloat(orderedProduct1.totalAmount)+parseFloat(priceVal);
     // console.log(product.id);
     // console.log(exsistedProduct);
     // console.log(exsistedProduct.quantity, product.quantity);
     if (exsistedProduct.quantity >= product.quantity) {
-      myordersCxt.myordersDispatchFn({ type: "PLACE_ORDER", value: product1 });
-      productsCxt.productsDispatchFn({ type: "PLACE_ORDER", value: product });
-      removeHandler(orderId);
+      myordersCxt.myordersDispatchFn({ type: "PLACE_ORDER", value:orderedProduct1 });
+      exsistedProduct.quantity =
+        exsistedProduct.quantity - orderedProduct.quantity + "";
+      productsCxt.productsDispatchFn({ type: "EDIT_PRODUCT", value: exsistedProduct });
+      removeHandler(ordeId);
       setTimeout(() => {
         alert("Your order placed successfully :)");
       }, 400);
@@ -121,11 +136,12 @@ const Cart = () => {
     return (
       <div key={`product${index + 1}`}>
         <CartItem
-          id={cartItem.id}
+          giftId={cartItem.giftId}
           productName={cartItem.productName}
           totalAmount={cartItem.totalAmount}
           quantity={cartItem.quantity}
           place="cart"
+          cartItemId={cartItem.cartItemId}
           onOpen={openEditOverlayHandler}
           onDelete={removeHandler}
           onPlaceOrder={gotoPlaceOrder}
@@ -144,7 +160,7 @@ const Cart = () => {
     element = (
       <EmptyPage
         message="Your Cart is Empty :("
-        btnText="Add Products"
+        btnText="Add Gifts"
         onClick={goToProductsPageHandler}
       />
     );

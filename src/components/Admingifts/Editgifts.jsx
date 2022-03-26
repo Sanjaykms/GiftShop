@@ -13,7 +13,7 @@ export default function EditPage({ item, onEditProduct, cou }) {
   const onEdit = (e) => {
     e.preventDefault();
     const updatedProduct = {
-      id: item.id,
+      giftId: item.giftId,
       url: editImage,
       productName: editProductName,
       price: editCost,
@@ -41,7 +41,7 @@ export default function EditPage({ item, onEditProduct, cou }) {
           cursor: "pointer",
         }}
       />
-      <div className="modal" id={"modal" + cou}>
+      <div className="modal" id={"modal" + cou} style={{marginTop:"100px"}}>
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">

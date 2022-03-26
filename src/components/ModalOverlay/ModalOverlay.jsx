@@ -54,6 +54,7 @@ const ModalOverlay = (props) => {
           onClose={props.onClose}
           onSave={props.onSave}
           onDecrement={props.onDecrement}
+          imageUrl={props.imageUrl}
         />,
         document.getElementById("overlay-root")
       )}

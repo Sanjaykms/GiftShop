@@ -6,9 +6,6 @@ import { useAuthCxt } from "../Assets/auth-context";
 
 const AdminNavBar = (props) => {
   const authCxt = useAuthCxt();
-  const logoutHandler = () => {
-    authCxt.changeAdminHandler(false);
-  };
   return (
     <Fragment>
       <nav className={classes.header} id="adminNavbar">
@@ -52,7 +49,7 @@ const AdminNavBar = (props) => {
         <button
           id="admin-logout"
           className={classes.logout}
-          onClick={logoutHandler}
+          onClick={authCxt.logoutHandler}
         >
           Logout
         </button>

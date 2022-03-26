@@ -8,13 +8,16 @@ import ModalOverlay from "../ModalOverlay/ModalOverlay";
 import { useMyOrdersCxt } from "../Assets/myorders-context";
 import EmptyPage from "./Display/EmptyPage";
 import { useProductsCxt } from "../Assets/products-context";
+import { useAuthCxt } from "../Assets/auth-context";
 
 const MyOrder = () => {
   const navigate = useNavigate();
   const myordersCxt = useMyOrdersCxt();
   const productsCxt = useProductsCxt();
+  const { productsList } = productsCxt;
+  const authCxt = useAuthCxt();
   const [haveToEditProduct, setHaveToEditProduct] = useState({});
-
+  const [imageUrl, setImageUrl] = useState("");
   const { orderItems } = myordersCxt;
   let element;
 
@@ -22,28 +25,43 @@ const MyOrder = () => {
     return (quantity * price).toFixed(2);
   };
 
-  const openEditOverlayHandler = (productId) => {
+  const findProduct = (productId) => {
+    return {
+      ...productsList.find((item) => {
+        return productId === item.giftId;
+      }),
+    };
+  };
+  const openEditOverlayHandler = (orderId) => {
     const tempProduct = {
       ...orderItems.find((item) => {
-        return productId === item.id;
+        return orderId === item.orderId;
+      }),
+    };
+    const product = {
+      ...productsList.find((item) => {
+        return item.giftId === tempProduct.giftId;
       }),
     };
     setHaveToEditProduct(tempProduct);
-    navigate(`/MyOrders/${productId}`);
+    setImageUrl(product.url);
+    navigate(`/MyOrders/${orderId}`);
   };
 
   const closeEditOverlayHandler = () => {
     navigate("/MyOrders");
   };
 
-  const removeHandler = (productId, quantity) => {
+  const removeHandler = (orderId, giftId,quantity) => {
     myordersCxt.myordersDispatchFn({
       type: "CANCEL_ORDER",
-      value: productId,
+      value: orderId,
     });
+    const product = findProduct(giftId);
+    product.quantity = String(Number(product.quantity) + quantity);
     productsCxt.productsDispatchFn({
-      type: "CANCEL_ORDER",
-      value: { id: productId, quantity: quantity },
+      type: "EDIT_PRODUCT",
+      value: product,
     });
     setTimeout(() => {
       alert("Your order canceled successfully :) ");
@@ -70,7 +88,9 @@ const MyOrder = () => {
       );
       setHaveToEditProduct(tempProduct);
     } else {
-      removeHandler(haveToEditProduct.id);
+      removeHandler( tempProduct.orderId,
+        tempProduct.giftId,
+        tempProduct.quantity);
       closeEditOverlayHandler();
     }
   };
@@ -83,11 +103,14 @@ const MyOrder = () => {
     closeEditOverlayHandler();
   };
 
-  const items = orderItems.map((item, index) => {
+  const items = orderItems.filter((item) => {
+    return item.userId === authCxt.userInfo.userId;
+  }).map((item, index) => {
     return (
       <div key={`product${index + 1}`}>
         <CartItem
-          id={item.id}
+          orderId={item.orderId}
+          giftId={item.giftId}
           productName={item.productName}
           totalAmount={item.totalAmount}
           quantity={item.quantity}
@@ -103,14 +126,15 @@ const MyOrder = () => {
     navigate("/Cart");
   };
 
-  if (orderItems.length > 0) {
+  if (items.length > 0) {
     element = <Display items={items} />;
   } else {
     element = (
       <EmptyPage
         message="No Orders Found :("
-        btnText="Go to Cart."
+        btnText="Go to Cart"
         onClick={gotoCartHandler}
+        hasNeed={true}
       />
     );
   }
@@ -126,6 +150,7 @@ const MyOrder = () => {
               onIncrement={increceProductQuantity}
               onClose={closeEditOverlayHandler}
               onSave={saveHandler}
+              imageUrl={imageUrl}
               onDecrement={decreceProductQuantity}
             />
           }

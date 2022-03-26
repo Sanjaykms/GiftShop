@@ -2,26 +2,32 @@ import React, { useContext, useState } from "react";
 
 const AuthContext = React.createContext({
   isLogged: false,
-  isAdmin: false,
+  userInfo: {},
   loginHandler: () => {},
   logoutHandler: () => {},
-  changeAdminHandler: () => {},
 });
 
 const AuthContextProvider = (props) => {
   const [isLogged, setIsLogged] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [userInfo, setUserInfo] = useState({
+    userId: "",
+    userType: "",
+  });
 
-  const loginHandler = () => {
+  const loginHandler = (userId, userType) => {
     setIsLogged(true);
+    setUserInfo({
+      userId: userId,
+      userType: userType,
+    });
   };
 
   const logoutHandler = () => {
     setIsLogged(false);
-  };
-
-  const changeAdminHandler = (value) => {
-    setIsAdmin(value);
+    setUserInfo({
+      userId: "",
+      userType: "",
+    });
   };
 
   return (
@@ -30,8 +36,7 @@ const AuthContextProvider = (props) => {
         isLogged: isLogged,
         loginHandler: loginHandler,
         logoutHandler: logoutHandler,
-        isAdmin: isAdmin,
-        changeAdminHandler: changeAdminHandler,
+        userInfo: userInfo,
       }}
     >
       {props.children}

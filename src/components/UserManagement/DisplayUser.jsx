@@ -36,7 +36,7 @@ const DisplayUser = () => {
 
   const usersList = userCxt.usersList
     .filter((item) => {
-      return item.userName.includes(enteredValue);
+      return item.userName.includes(enteredValue) && item.role !== "admin";
     })
     .map((item, index) => {
       return (

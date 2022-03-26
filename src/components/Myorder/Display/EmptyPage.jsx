@@ -9,7 +9,7 @@ const EmptyPage = (props) => {
   return (
     <Card clname={classes.width}>
       <p>{props.message}</p>
-      <Button onClick={props.onClick}>{props.btnText}</Button>
+      {props.add!=="NIL"? <Button onClick={props.onClick}>{props.btnText}</Button>:""}
     </Card>
   );
 };

@@ -1,27 +1,9 @@
 import React, { useReducer, useContext } from "react";
 
 // Images import
-import PhotoFrame from "../../Images/photot-frame.jfif";
-import AppleWatch from "../../Images/Apple-watch.jfif";
 
-const cartItems = [
-  {
-    id: "product-1",
-    url: AppleWatch,
-    productName: "Watch I7",
-    price: "1000",
-    quantity: 2,
-    totalAmount: "2000",
-  },
-  {
-    id: "product-6",
-    url: PhotoFrame,
-    productName: "Photo-frame",
-    price: "70.00",
-    quantity: 1,
-    totalAmount: "70.00",
-  },
-];
+
+const cartItems = [];
 // Cart context
 const CartContext = React.createContext({
   cartItems: [],
@@ -31,33 +13,23 @@ const CartContext = React.createContext({
 // Cart Reducer fn
 const cartReducer = (prevState, action) => {
   let updatedArray;
-  if (action.type === "ADD_TO_CART") {
-    const exsistedItem = prevState.find((item) => {
-      return action.value.id === item.id;
-    });
-    const index = prevState.indexOf(exsistedItem);
-    const cloneProduct = { ...exsistedItem };
-    const newProduct = { ...action.value };
-
-    if (index >= 0) {
-      cloneProduct.quantity += 1;
-      cloneProduct.totalAmount = (
-        cloneProduct.quantity * cloneProduct.price
-      ).toFixed(2);
-      updatedArray = [...prevState];
-      updatedArray[index] = cloneProduct;
-    } else {
-      newProduct.totalAmount = (
-        action.value.quantity * action.value.price
-      ).toFixed(2);
-      updatedArray = [newProduct, ...prevState];
-    }
+  if (action.type === "GET_CART_ITEMS") {
+    updatedArray = [...action.value];
+    return updatedArray;
+  } else if (action.type === "ADD_TO_CART") {
+    action.value.totalAmount = (
+      action.value.quantity * action.value.price
+    ).toFixed(2);
+    updatedArray = [action.value, ...prevState];
     return updatedArray;
   } else if (action.type === "SAVE_EDITED_PRODUCT") {
     const exsistedItem = prevState.find((item) => {
-      return action.value.id === item.id;
+      return action.value.giftId === item.giftId;
     });
     const index = prevState.indexOf(exsistedItem);
+    action.value.totalAmount = (
+      action.value.quantity * action.value.price
+    ).toFixed(2);
     const cloneProduct = { ...action.value };
     updatedArray = [...prevState];
     updatedArray[index] = cloneProduct;
@@ -65,7 +37,7 @@ const cartReducer = (prevState, action) => {
   } else if (action.type === "REMOVE_FROM_CART") {
     updatedArray = [
       ...prevState.filter((item) => {
-        return item.id !== action.value;
+        return item.cartItemId !== action.value;
       }),
     ];
     return updatedArray;

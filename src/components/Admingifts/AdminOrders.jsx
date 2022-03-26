@@ -1,33 +1,45 @@
-import React from 'react';
-import classes from './AdminOrders.module.css';
+import React from "react";
+import classes from "./AdminOrders.module.css";
+import { useMyOrdersCxt } from "../Assets/myorders-context";
+import Card from "../ModalOverlay/Card";
+import EmptyPage from "../Myorder/Display/EmptyPage";
+
 export default function AdminOrders(props) {
-
-    const data = [
-        {orderId:"jfdhjfd-fhf-17",userId:"User1",productName:"Led key chain",productPrice:"$200",productQuantity:"3 ps"},
-        {orderId:"jfdhjfd-fhf-166",userId:"User2",productName:"Key chain",productPrice:"$20",productQuantity:"10 ps"},
-        {orderId:"jfdhjfd-fhf-160",userId:"User3",productName:"Led key lamp",productPrice:"$50",productQuantity:"2 ps"},
-        {orderId:"jfdhjfd-fhf-221",userId:"User4",productName:"Printed Bottle",productPrice:"$30",productQuantity:"4 ps"}
-      ]
-
-return (
-   <div className='square'>
-         <div className={classes.headerDiv}>
-         <div className={classes.headerLabel}><label>Order Id</label></div>
-         <div className={classes.headerLabel}><label>User Id</label></div>
-         <div className={classes.headerLabel}><label>Product Name</label></div>
-         <div className={classes.headerLabel}><label>Price</label></div>
-         <div className={classes.headerLabel}><label>Quantity</label></div>
-       </div>
-   <br/><br/><br/><br/><br/><br/>
-      {data.map((item,cou) =>
-     <div key={cou} className={classes.componentdiv}>
-     <div className={classes.labeldiv}><label>{item.orderId}</label></div>
-     <div className={classes.labeldiv}><label>{item.userId}</label></div>
-    <div className={classes.labeldiv}><label>{item.productName}</label></div>
-     <div className={classes.labeldiv}><label>{item.productPrice}</label></div>
-    <div className={classes.labeldiv}><label>{item.productQuantity}</label></div>
-     </div>
-      )}
-   </div>
-)
+  const ordersCxt = useMyOrdersCxt();
+  let element;
+  if (ordersCxt.orderItems.length > 0) {
+    element = (
+      <Card clname={classes.width}>
+        <table className={classes.table}>
+          <thead className={classes.header}>
+            <tr>
+              <td>Gift Image</td>
+              <td>Order Id</td>
+              <td>User Id</td>
+              <td>Gift Name</td>
+              <td>Quantity</td>
+              <td>Total Price</td>
+            </tr>
+          </thead>
+          <tbody className={classes.content}>
+            {ordersCxt.orderItems.map((item, index) => {
+              return (
+                <tr key={index} className={classes.tablerow}>
+                  <td><img src={item.url} alt="img"></img></td>
+                  <td>{item.orderId}</td>
+                  <td>{item.userId}</td>
+                  <td>{item.productName}</td>
+                  <td>{item.quantity}</td>
+                  <td>${item.totalAmount}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>{" "}
+      </Card>
+    );
+  } else {
+    element = <EmptyPage message="No Orders placed yet :( " add="NIL"/>;
+  }
+  return element;
 }

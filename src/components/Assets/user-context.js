@@ -7,8 +7,8 @@ const usersDetailsList = [
     email: "prabhu@gmail.com",
     mobileNumber: "9876543210",
     password: "something",
-    userType: "user",
-    userLog:"false",
+    role: "customer",
+    active:"false",
   },
   {
     userId: "user-2",
@@ -16,8 +16,8 @@ const usersDetailsList = [
     email: "Yugenth@gmail.com",
     mobileNumber: "1234567890",
     password: "logesh@kiot",
-    userType: "user",
-    userLog:"false",
+    role: "customer",
+    active:"false",
   },
   {
     userId: "user-3",
@@ -25,17 +25,17 @@ const usersDetailsList = [
     email: "sanjaykmsmoorthy@gmail.com",
     mobileNumber: "7836546729",
     password: "123456",
-    userType: "user",
-    userLog:"false",
+    role: "customer",
+    active:"false",
   },
   {
     userId: "user-4",
-    userName: "rakesh",
-    email: "rakesh@gmail.com",
+    userName: "ADMIN",
+    email: "admin@gmail.com",
     mobileNumber: "9087653480",
-    password: "rakesh@mlrit",
-    userType: "user",
-    userLog:"false",
+    password: "admin",
+    role: "admin",
+    active:"false",
   },
 ];
 
@@ -46,10 +46,11 @@ const UserContext = React.createContext({
 
 const userReducer = (prevState, action) => {
   let updatedArray;
-  if (action.type === "ADD_USER") {
-    action.value.userId = `user-${prevState.length + 1}`;
-    action.value.userType = "customer";
-    const newUser = { ...action.value };
+  if (action.type === "GET_USERS") {
+    updatedArray = [...action.value];
+    return updatedArray;
+  } else if (action.type === "ADD_USER") {
+    const newUser = action.value;
     updatedArray = [...prevState, newUser];
     return updatedArray;
   } else if (action.type === "EDIT_USER") {

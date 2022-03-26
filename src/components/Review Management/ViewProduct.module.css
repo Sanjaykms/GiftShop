@@ -1,0 +1,113 @@
+.container {
+    font-family: "Montserrat", sans-serif;
+    width: 50%;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    border: none;
+    margin: 200px auto;
+    margin-top: 7rem;
+    overflow: hidden;
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: row;
+    padding: 30px;
+  }
+  
+  .details {
+    padding-top: 30px;
+    margin-left: 20px;
+  }
+  
+  .details h3 {
+    margin-bottom: 25px;
+    font-size: 20px;
+    display: inline-block;
+  }
+  
+  .img {
+    height: 200px;
+    width: 200px;
+  }
+  
+  header {
+    height: 5rem;
+    background-color: #0D6EFD;
+    color: white;
+    padding-top: 20px;
+    padding-left: 30px;
+  }
+  
+  header h1 {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .label {
+    color: gray;
+  }
+  
+  .footer {
+    text-align: left;
+    height: 5rem;
+    padding-left: 30px;
+  }
+  
+  .footer button {
+    height: 40px;
+    border-radius: 5px;
+    font-size: 15px;
+    width: 25%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  }
+  
+  .back {
+    background-color: white;
+    border: 2px solid #2f80fa;
+    color: #2f80fa;
+    margin-right: 20px;
+  }
+  
+  .back:hover {
+    background-color: #2f80fa;
+    border: none;
+    color: white;
+  }
+  
+  .toCart {
+    background-color: #0D6EFD;
+    border: none;
+    color: white;
+  }
+  
+  .toCart:hover {
+    background-color: #064ebb;
+  }
+  
+  .reviews {
+    padding: 30px;
+    position: relative;
+  }
+  
+  .reviews h1 {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .textarea {
+    width: 100%;
+    height: 100px;
+    padding-top: 10px;
+    padding-left: 20px;
+  }
+  
+  .addIcon {
+    cursor: pointer;
+    height: 35px;
+    width: 35px;
+    color: #0D6EFD;
+    position: absolute;
+    right: 25px;
+    bottom: -0px;
+  }
