@@ -21,8 +21,8 @@ const MyOrder = () => {
   const { orderItems } = myordersCxt;
   let element;
 
-  const findTotalAmount = (quantity, price) => {
-    return (quantity * price).toFixed(2);
+  const findTotalAmount = (quantity, price,themePrice) => {
+    return ((quantity * price)+(themePrice*quantity)).toFixed(2);
   };
 
   const findProduct = (productId) => {
@@ -70,12 +70,24 @@ const MyOrder = () => {
 
   const increceProductQuantity = () => {
     const tempProduct = { ...haveToEditProduct };
-    tempProduct.quantity += 1;
-    tempProduct.totalAmount = findTotalAmount(
-      tempProduct.quantity,
-      tempProduct.price
-    );
-    setHaveToEditProduct(tempProduct);
+    const exsistedProduct = {
+      ...productsCxt.productsList.find((item) => {
+        return tempProduct.giftId === item.giftId;
+      }),
+    };
+    if((parseInt(exsistedProduct.quantity)+1)<=tempProduct.quantity){
+      alert("Not more sufficient stocks are avaliable!!!");
+      return;
+    }
+    else{
+      tempProduct.quantity += 1;
+      tempProduct.totalAmount = findTotalAmount(
+        tempProduct.quantity,
+        tempProduct.price,
+        parseFloat(tempProduct.themePrice)
+      );
+      setHaveToEditProduct(tempProduct); 
+    }
   };
 
   const decreceProductQuantity = () => {
@@ -84,7 +96,8 @@ const MyOrder = () => {
       tempProduct.quantity -= 1;
       tempProduct.totalAmount = findTotalAmount(
         tempProduct.quantity,
-        tempProduct.price
+        tempProduct.price,
+        parseFloat(tempProduct.themePrice)
       );
       setHaveToEditProduct(tempProduct);
     } else {

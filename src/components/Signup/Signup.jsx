@@ -34,7 +34,7 @@ import "./Signup.css";
               
                 const createUserObj = (value) => {
                   const tempUser = {};
-                  tempUser.userId= generateId("U");
+                  tempUser.userId= generateId("USER");
                   tempUser.email = value.email;
                   tempUser.userName = value.userName;
                   tempUser.mobileNumber = value.mobileNumber;
@@ -100,7 +100,7 @@ const validate = (values) =>{
         if(!values.confirmpassword){
                 errors.confirmpassword= "Confirm Password is required!";
         }
-        else if(values.confirmpassword != values.password){
+        else if(values.confirmpassword !== values.password){
                 errors.confirmpassword= "Password missmatch!";
         }
         return errors;

@@ -106,6 +106,7 @@ const Cart = () => {
       totalAmount: product.totalAmount,
       url:product.url,
       status: "Order placed",
+      themePrice:priceVal,
     };
     const orderedProduct1=orderedProduct;
     orderedProduct1.totalAmount=parseFloat(orderedProduct1.totalAmount)+parseFloat(priceVal);
@@ -123,7 +124,7 @@ const Cart = () => {
       }, 400);
       closeEditOverlayHandler();
     } else {
-      alert("Not sufficient stocks available :(");
+      alert("Not more sufficient stocks available :(");
     }
   };
   const gotoPlaceOrder=(oID)=>{
