@@ -1,5 +1,5 @@
-import React, { useState, Fragment } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import React, { useState, Fragment ,useEffect} from "react";
+import { Routes, Route, useNavigate} from "react-router-dom";
 
 import Display from "./Display/Display";
 import CartItem from "./CartItem";
@@ -19,8 +19,8 @@ const MyOrder = () => {
   const [haveToEditProduct, setHaveToEditProduct] = useState({});
   const [imageUrl, setImageUrl] = useState("");
   const { orderItems } = myordersCxt;
+  const [orderID,setOrderID]=useState(0);
   let element;
-
   const findTotalAmount = (quantity, price,themePrice) => {
     return ((quantity * price)+(themePrice*quantity)).toFixed(2);
   };
@@ -43,6 +43,7 @@ const MyOrder = () => {
         return item.giftId === tempProduct.giftId;
       }),
     };
+    setOrderID(tempProduct.quantity);
     setHaveToEditProduct(tempProduct);
     setImageUrl(product.url);
     navigate(`/MyOrders/${orderId}`);
@@ -53,6 +54,9 @@ const MyOrder = () => {
   };
 
   const removeHandler = (orderId, giftId,quantity) => {
+    if(prompt("Are you sure on cancelling the order?\n\nIf yes means type 'YES'")!=="YES"){
+      return;
+    }
     myordersCxt.myordersDispatchFn({
       type: "CANCEL_ORDER",
       value: orderId,
@@ -75,11 +79,6 @@ const MyOrder = () => {
         return tempProduct.giftId === item.giftId;
       }),
     };
-    if((parseInt(exsistedProduct.quantity)+1)<=tempProduct.quantity){
-      alert("Not more sufficient stocks are avaliable!!!");
-      return;
-    }
-    else{
       tempProduct.quantity += 1;
       tempProduct.totalAmount = findTotalAmount(
         tempProduct.quantity,
@@ -87,7 +86,6 @@ const MyOrder = () => {
         parseFloat(tempProduct.themePrice)
       );
       setHaveToEditProduct(tempProduct); 
-    }
   };
 
   const decreceProductQuantity = () => {
@@ -103,16 +101,31 @@ const MyOrder = () => {
     } else {
       removeHandler( tempProduct.orderId,
         tempProduct.giftId,
-        tempProduct.quantity);
+        orderID);
       closeEditOverlayHandler();
     }
   };
 
   const saveHandler = () => {
+    const product = {
+      ...productsList.find((item) => {
+        return item.giftId === haveToEditProduct.giftId;
+      }),
+    };
+    product.quantity=parseInt(product.quantity)+(orderID-haveToEditProduct.quantity);
+    if(product.quantity<0){
+      alert("Not more sufficient stocks are available :<")
+      return;
+    }
     myordersCxt.myordersDispatchFn({
       type: "UPDATE_ORDER",
       value: haveToEditProduct,
     });
+    productsCxt.productsDispatchFn({
+      type: "EDIT_PRODUCT",
+      value: product,
+    });
+    alert(orderID+" "+haveToEditProduct.quantity+" "+product.quantity+"  last+>"+parseInt(product.quantity)+(orderID-haveToEditProduct.quantity));
     closeEditOverlayHandler();
   };
 

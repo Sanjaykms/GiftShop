@@ -5,6 +5,6 @@
     "\\Amazepack_Project\\Controllers",
     "\\Amazepack_Project\\Model"
   ],
-  "SelectedNode": "\\Amazepack_Project\\appsettings.json",
+  "SelectedNode": "\\Amazepack_Project\\Controllers\\CartModelController.cs",
   "PreviewInSolutionExplorer": false
 }

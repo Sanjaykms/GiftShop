@@ -109,7 +109,7 @@ const Cart = () => {
       themePrice:priceVal,
     };
     const orderedProduct1=orderedProduct;
-    orderedProduct1.totalAmount=parseFloat(orderedProduct1.totalAmount)+parseFloat(priceVal);
+    orderedProduct1.totalAmount=parseFloat(orderedProduct1.totalAmount)+parseFloat(priceVal*orderedProduct.quantity);
     // console.log(product.id);
     // console.log(exsistedProduct);
     // console.log(exsistedProduct.quantity, product.quantity);

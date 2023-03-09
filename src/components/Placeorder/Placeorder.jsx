@@ -51,7 +51,7 @@ const OrderOverlay=(props)=>{
 
 
             <div id="orderPrice" class="input-group mb-3">
-              <input type="text" class="form-control" id="orderPrice" value={"$"+(parseFloat(productVal.totalAmount)+parseFloat(addTheme))} disabled></input>
+              <input type="text" class="form-control" id="orderPrice" value={"$"+(parseFloat(productVal.totalAmount)+(parseFloat(addTheme)*productVal.quantity))} disabled></input>
             </div>
 
             <div id="giftModel" class="input-group mb-3">
