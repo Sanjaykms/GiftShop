@@ -9,7 +9,7 @@ const TableData = (props) => {
     <tr key={item.giftId} style={{ backgroundColor: "white" }}>
       <td>
         <img
-          style={{ height: "80px", width: "80px",objectFit:"cover"}}
+          style={{ height: "80px", width: "80px", objectFit: "cover" }}
           src={item.url}
           alt={item.productName}
         />
@@ -42,13 +42,16 @@ export default function DisplayProducts() {
   const productsCxt = useProductsCxt();
   let element;
   const deleteProductHandler = (productId) => {
-    productsCxt.productsDispatchFn({
-      type: "DELETE_PRODUCT",
-      value: productId,
-    });
-    setTimeout(() => {
-      alert("Product deleted successfully");
-    }, 300);
+    var condit = prompt("Do you want to delete this product?\nThen type 'YES'");
+    if (condit === "YES") {
+      productsCxt.productsDispatchFn({
+        type: "DELETE_PRODUCT",
+        value: productId,
+      });
+      setTimeout(() => {
+        alert("Product deleted successfully");
+      }, 300);
+    }
   };
 
   let tableBody = (
@@ -57,44 +60,43 @@ export default function DisplayProducts() {
       onDelete={deleteProductHandler}
     />
   );
-  if(tableBody.props.data.length>0){
-    element=(
+  if (tableBody.props.data.length > 0) {
+    element = (
       <div
-      className="table-responsive"
-      style={{
-        border: "none",
-        borderRadius: "15px",
-        overflow: "hidden",
-        boxShadow: "0 2px 16px rgba(0, 0, 0, 0.25)",
-        backgroundColor: "white",
-      }}
-    >
-      <table
-        className="table table-hover"
-        style={{ verticalAlign: "middle" }}
+        className="table-responsive"
+        style={{
+          border: "none",
+          borderRadius: "15px",
+          overflow: "hidden",
+          boxShadow: "0 2px 16px rgba(0, 0, 0, 0.25)",
+          backgroundColor: "white",
+        }}
       >
-        <thead>
-          <tr
-            style={{
-              fontSize: "130%",
-              backgroundColor: "#0D6EFD",
-              color: "white",
-            }}
-          >
-            <th scope="col">Image</th>
-            <th scope="col">Gifts Name</th>
-            <th scope="col">Cost</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
-          </tr>
-        </thead>
-        <tbody>{tableBody}</tbody>
-      </table>
-    </div> 
+        <table
+          className="table table-hover"
+          style={{ verticalAlign: "middle" }}
+        >
+          <thead>
+            <tr
+              style={{
+                fontSize: "130%",
+                backgroundColor: "#0D6EFD",
+                color: "white",
+              }}
+            >
+              <th scope="col">Image</th>
+              <th scope="col">Gifts Name</th>
+              <th scope="col">Cost</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>{tableBody}</tbody>
+        </table>
+      </div>
     );
-  }
-  else{
+  } else {
     element = <EmptyPage message="No Products Found" />;
   }
   return (
@@ -106,7 +108,7 @@ export default function DisplayProducts() {
         textAlign: "center",
       }}
     >
-     {element}
+      {element}
     </div>
   );
 }

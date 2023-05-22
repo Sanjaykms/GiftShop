@@ -1,4 +1,4 @@
-import React ,{Fragment} from "react";
+import React, { Fragment } from "react";
 
 import ProductItem from "./ProductItem";
 
@@ -6,7 +6,7 @@ import classes from "./Giftlist.module.css";
 import { useCartCxt } from "../Assets/cart-context";
 import { useProductsCxt } from "../Assets/products-context";
 import EmptyPage from "../Myorder/Display/EmptyPage";
- function ProductList() {
+function ProductList() {
   const cartCxt = useCartCxt();
   const productsCxt = useProductsCxt();
   let element;
@@ -15,8 +15,8 @@ import EmptyPage from "../Myorder/Display/EmptyPage";
     // console.log(product);
     return (
       <ProductItem
-        key={'grid${index}'}
-        id={'grid${index}'}
+        key={"grid${index*new Date().getTime()}"}
+        id={"grid${index}"}
         product={product}
         onClick={cartCxt.cartDispatchFn}
       />
@@ -29,9 +29,11 @@ import EmptyPage from "../Myorder/Display/EmptyPage";
     clname = "";
     element = <EmptyPage message="No Products Found" />;
   }
-  return (<Fragment>
-  <div className={clname}>{element}</div>
-</Fragment>);
+  return (
+    <Fragment>
+      <div className={clname}>{element}</div>
+    </Fragment>
+  );
 }
 
 export default ProductList;

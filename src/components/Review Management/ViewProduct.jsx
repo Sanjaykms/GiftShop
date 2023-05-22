@@ -14,6 +14,7 @@ import { useAuthCxt } from "../Assets/auth-context";
 import { useUserCxt } from "../Assets/user-context";
 
 const ViewProduct = () => {
+  const [dummyReviewT,setDummyRT]=useState("");
   const [reviewItem, setReviewItem] = useState({});
   const [reviewText, setReviewText] = useState("");
   const [isEditBtnClicked, setIsEditBtnClicked] = useState(false);
@@ -40,17 +41,21 @@ const ViewProduct = () => {
   };
 
   const editReviewHandler = (reviewItem) => {
+    setDummyRT(reviewItem.reviewText);
     setIsEditBtnClicked(true);
     setReviewText(reviewItem.reviewText);
     setReviewItem(reviewItem);
   };
 
   const updateReviewHandler = () => {
-    const newReview = { ...reviewItem };
+    if(dummyReviewT!==reviewText){
+       const newReview = { ...reviewItem };
     newReview.reviewText = reviewText;
-    reviewCxt.editReview(newReview);
+    reviewCxt.editReview(newReview); 
+    }
     setReviewItem({});
     setReviewText("");
+    setDummyRT("");
     setIsEditBtnClicked(false);
   };
 

@@ -9,11 +9,11 @@ import { useCartCxt } from "../Assets/cart-context";
 import { useMyOrdersCxt } from "../Assets/myorders-context";
 import { useProductsCxt } from "../Assets/products-context";
 import { useAuthCxt } from "../Assets/auth-context";
-import Placeorder from '../Placeorder/Placeorder';
+import Placeorder from "../Placeorder/Placeorder";
 import useGenerateId from "../../Hooks/generate-id";
 const Cart = () => {
-  const [ordeId,setOrderId]=useState("");
-  const [priceVal,setPriceVal]=useState("");
+  const [ordeId, setOrderId] = useState("");
+  const [priceVal, setPriceVal] = useState("");
   const [haveToEditProduct, setHaveToEditProduct] = useState({});
   const cartCxt = useCartCxt();
   const authCxt = useAuthCxt();
@@ -85,12 +85,11 @@ const Cart = () => {
   const closeEditOverlayHandler = () => {
     navigate("/Cart");
   };
-  const themePrice=(val)=>{
+  const themePrice = (val) => {
     setPriceVal(val);
-  }
+  };
   const placeOrderHandler = () => {
-    
-    const product = findProduct(ordeId)
+    const product = findProduct(ordeId);
     const exsistedProduct = {
       ...productsCxt.productsList.find((item) => {
         return product.giftId === item.giftId;
@@ -104,20 +103,28 @@ const Cart = () => {
       quantity: product.quantity,
       price: product.price,
       totalAmount: product.totalAmount,
-      url:product.url,
+      url: product.url,
       status: "Order placed",
-      themePrice:priceVal,
+      themePrice: priceVal,
     };
-    const orderedProduct1=orderedProduct;
-    orderedProduct1.totalAmount=parseFloat(orderedProduct1.totalAmount)+parseFloat(priceVal*orderedProduct.quantity);
+    const orderedProduct1 = orderedProduct;
+    orderedProduct1.totalAmount =
+      parseFloat(orderedProduct1.totalAmount) +
+      parseFloat(priceVal * orderedProduct.quantity);
     // console.log(product.id);
     // console.log(exsistedProduct);
     // console.log(exsistedProduct.quantity, product.quantity);
     if (exsistedProduct.quantity >= product.quantity) {
-      myordersCxt.myordersDispatchFn({ type: "PLACE_ORDER", value:orderedProduct1 });
+      myordersCxt.myordersDispatchFn({
+        type: "PLACE_ORDER",
+        value: orderedProduct1,
+      });
       exsistedProduct.quantity =
         exsistedProduct.quantity - orderedProduct.quantity + "";
-      productsCxt.productsDispatchFn({ type: "EDIT_PRODUCT", value: exsistedProduct });
+      productsCxt.productsDispatchFn({
+        type: "EDIT_PRODUCT",
+        value: exsistedProduct,
+      });
       removeHandler(ordeId);
       setTimeout(() => {
         alert("Your order placed successfully :)");
@@ -127,35 +134,38 @@ const Cart = () => {
       alert("Not more sufficient stocks available :(");
     }
   };
-  const gotoPlaceOrder=(oID)=>{
+  const gotoPlaceOrder = (oID) => {
     setOrderId(oID);
     const product1 = findProduct(oID);
     setHaveToEditProduct(product1);
     navigate("Placeorder");
-  }
+  };
+  var countC = 0;
   const items = cartCxt.cartItems.map((cartItem, index) => {
-    return (
-      <div key={`product${index + 1}`}>
-        <CartItem
-          giftId={cartItem.giftId}
-          productName={cartItem.productName}
-          totalAmount={cartItem.totalAmount}
-          quantity={cartItem.quantity}
-          place="cart"
-          cartItemId={cartItem.cartItemId}
-          onOpen={openEditOverlayHandler}
-          onDelete={removeHandler}
-          onPlaceOrder={gotoPlaceOrder}
-        />
-        <hr key={index + 1} />
-      </div>
-    );
+    if (authCxt.userInfo.userId === cartItem.userId) {
+      countC++;
+      return (
+        <div key={`product${index + 1}`}>
+          <CartItem
+            giftId={cartItem.giftId}
+            productName={cartItem.productName}
+            totalAmount={cartItem.totalAmount}
+            quantity={cartItem.quantity}
+            place="cart"
+            cartItemId={cartItem.cartItemId}
+            onOpen={openEditOverlayHandler}
+            onDelete={removeHandler}
+            onPlaceOrder={gotoPlaceOrder}
+          />
+          <hr key={index + 1} />
+        </div>
+      );
+    }
   });
   const goToProductsPageHandler = () => {
     navigate("/Homepage");
   };
-
-  if (cartCxt.cartItems.length > 0) {
+  if (countC > 0) {
     element = <Display items={items} />;
   } else {
     element = (
@@ -182,13 +192,16 @@ const Cart = () => {
             />
           }
         />
-        <Route path="Placeorder" element={
-        <Placeorder 
-        productToBeShown={haveToEditProduct}
-        placeorder={placeOrderHandler}
-        onClose={closeEditOverlayHandler}
-        onThemeChange={themePrice}/>
-        }
+        <Route
+          path="Placeorder"
+          element={
+            <Placeorder
+              productToBeShown={haveToEditProduct}
+              placeorder={placeOrderHandler}
+              onClose={closeEditOverlayHandler}
+              onThemeChange={themePrice}
+            />
+          }
         />
       </Routes>
       {element}

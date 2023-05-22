@@ -14,7 +14,10 @@ const ReviewsList = (props) => {
   });
 
   const deleteReviewHandler = (reviewId) => {
-    reviewCxt.deleteReview(reviewId);
+    var condit=prompt("Delete?\nType 'YES'");
+    if(condit==="YES"){
+      reviewCxt.deleteReview(reviewId); 
+    }
   };
 
   if (filteredReviewList.length > 0) {

@@ -1,24 +1,29 @@
 import React, { useState } from "react";
 import Button from "../ModalOverlay/Button";
 import { useThemeCxt } from "../Assets/themes-context";
-
+import useGenerateId from "../../Hooks/generate-id";
 export default function AddItem() {
   const themeCxt = useThemeCxt();
   const [themeName, setThemeName] = useState("");
   const [cost, setCost] = useState("");
   const [themeDesc, setThemeDesc] = useState("");
-
+  const generateId = useGenerateId();
   const submit = (e) => {
     e.preventDefault();
-    const newProduct = {
-      themeName: themeName,
-      price: cost,
-      themeDesc: themeDesc,
-    };
-    themeCxt.themeDispatchFn({ type: "ADD_PRODUCT", value: newProduct });
-    setThemeName("");
-    setCost("");
-    setThemeDesc("");
+    if (themeName !== "" && cost !== "" && themeDesc !== "") {
+      const newProduct = {
+        id: generateId("theme"),
+        themeName: themeName,
+        price: cost,
+        themeDesc: themeDesc,
+      };
+      themeCxt.themeDispatchFn({ type: "ADD_PRODUCT", value: newProduct });
+      setThemeName("");
+      setCost("");
+      setThemeDesc("");
+    } else {
+      alert("Enter all the details");
+    }
   };
 
   return (

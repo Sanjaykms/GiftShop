@@ -1,5 +1,5 @@
-import React, { useState, Fragment ,useEffect} from "react";
-import { Routes, Route, useNavigate} from "react-router-dom";
+import React, { useState, Fragment, useEffect } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 import Display from "./Display/Display";
 import CartItem from "./CartItem";
@@ -19,10 +19,10 @@ const MyOrder = () => {
   const [haveToEditProduct, setHaveToEditProduct] = useState({});
   const [imageUrl, setImageUrl] = useState("");
   const { orderItems } = myordersCxt;
-  const [orderID,setOrderID]=useState(0);
+  const [orderID, setOrderID] = useState(0);
   let element;
-  const findTotalAmount = (quantity, price,themePrice) => {
-    return ((quantity * price)+(themePrice*quantity)).toFixed(2);
+  const findTotalAmount = (quantity, price, themePrice) => {
+    return (quantity * price + themePrice * quantity).toFixed(2);
   };
 
   const findProduct = (productId) => {
@@ -53,8 +53,12 @@ const MyOrder = () => {
     navigate("/MyOrders");
   };
 
-  const removeHandler = (orderId, giftId,quantity) => {
-    if(prompt("Are you sure on cancelling the order?\n\nIf yes means type 'YES'")!=="YES"){
+  const removeHandler = (orderId, giftId, quantity) => {
+    if (
+      prompt(
+        "Are you sure on cancelling the order?\n\nIf yes means type 'YES'"
+      ) !== "YES"
+    ) {
       return;
     }
     myordersCxt.myordersDispatchFn({
@@ -79,13 +83,13 @@ const MyOrder = () => {
         return tempProduct.giftId === item.giftId;
       }),
     };
-      tempProduct.quantity += 1;
-      tempProduct.totalAmount = findTotalAmount(
-        tempProduct.quantity,
-        tempProduct.price,
-        parseFloat(tempProduct.themePrice)
-      );
-      setHaveToEditProduct(tempProduct); 
+    tempProduct.quantity += 1;
+    tempProduct.totalAmount = findTotalAmount(
+      tempProduct.quantity,
+      tempProduct.price,
+      parseFloat(tempProduct.themePrice)
+    );
+    setHaveToEditProduct(tempProduct);
   };
 
   const decreceProductQuantity = () => {
@@ -99,9 +103,7 @@ const MyOrder = () => {
       );
       setHaveToEditProduct(tempProduct);
     } else {
-      removeHandler( tempProduct.orderId,
-        tempProduct.giftId,
-        orderID);
+      removeHandler(tempProduct.orderId, tempProduct.giftId, orderID);
       closeEditOverlayHandler();
     }
   };
@@ -112,9 +114,10 @@ const MyOrder = () => {
         return item.giftId === haveToEditProduct.giftId;
       }),
     };
-    product.quantity=parseInt(product.quantity)+(orderID-haveToEditProduct.quantity);
-    if(product.quantity<0){
-      alert("Not more sufficient stocks are available :<")
+    product.quantity =
+      parseInt(product.quantity) + (orderID - haveToEditProduct.quantity);
+    if (product.quantity < 0) {
+      alert("Not more sufficient stocks are available :<");
       return;
     }
     myordersCxt.myordersDispatchFn({
@@ -125,28 +128,30 @@ const MyOrder = () => {
       type: "EDIT_PRODUCT",
       value: product,
     });
-    alert(orderID+" "+haveToEditProduct.quantity+" "+product.quantity+"  last+>"+parseInt(product.quantity)+(orderID-haveToEditProduct.quantity));
+    //alert(orderID+" "+haveToEditProduct.quantity+" "+product.quantity+"  last+>"+parseInt(product.quantity)+(orderID-haveToEditProduct.quantity));
     closeEditOverlayHandler();
   };
 
-  const items = orderItems.filter((item) => {
-    return item.userId === authCxt.userInfo.userId;
-  }).map((item, index) => {
-    return (
-      <div key={`product${index + 1}`}>
-        <CartItem
-          orderId={item.orderId}
-          giftId={item.giftId}
-          productName={item.productName}
-          totalAmount={item.totalAmount}
-          quantity={item.quantity}
-          onOpen={openEditOverlayHandler}
-          onCancel={removeHandler}
-        />
-        <hr />
-      </div>
-    );
-  });
+  const items = orderItems
+    .filter((item) => {
+      return item.userId === authCxt.userInfo.userId;
+    })
+    .map((item, index) => {
+      return (
+        <div key={`product${index + 1}`}>
+          <CartItem
+            orderId={item.orderId}
+            giftId={item.giftId}
+            productName={item.productName}
+            totalAmount={item.totalAmount}
+            quantity={item.quantity}
+            onOpen={openEditOverlayHandler}
+            onCancel={removeHandler}
+          />
+          <hr />
+        </div>
+      );
+    });
 
   const gotoCartHandler = () => {
     navigate("/Cart");

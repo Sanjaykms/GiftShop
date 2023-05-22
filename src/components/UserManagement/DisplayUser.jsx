@@ -1,9 +1,9 @@
-import React, { Fragment, useState} from "react";
+import React, { Fragment, useState } from "react";
 import Card from "../ModalOverlay/Card";
 import UserItem from "./UserItem";
 import { useUserCxt } from "../Assets/user-context";
 import EditUser from "./EditUser";
-import {  Routes, Route,useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import classes from "./DisplayUser.module.css";
 
 const DisplayUser = () => {
@@ -31,7 +31,10 @@ const DisplayUser = () => {
   };
 
   const deleteHandler = (userId) => {
-    userCxt.userDispatchFn({ type: "DELETE_USER", value: userId });
+    var condit = prompt("Do you want to delete this user?\nThen type 'YES'");
+    if (condit === "YES") {
+      userCxt.userDispatchFn({ type: "DELETE_USER", value: userId });
+    }
   };
 
   const usersList = userCxt.usersList

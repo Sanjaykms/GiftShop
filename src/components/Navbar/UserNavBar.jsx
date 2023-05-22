@@ -9,6 +9,12 @@ import { useAuthCxt } from "../Assets/auth-context";
 const UserNavBar = () => {
   const authCxt = useAuthCxt();
   const cartCxt = useCartCxt();
+  var count = 0;
+  cartCxt.cartItems.map((cartItem, index) => {
+    if (authCxt.userInfo.userId === cartItem.userId) {
+      count++;
+    }
+  });
   return (
     <Fragment>
       <nav className={classes.header} id="userNavbar">
@@ -31,9 +37,7 @@ const UserNavBar = () => {
             >
               <li id="productCartButton">
                 Cart
-                <span className={classes["cart-highlighter"]}>
-                  {cartCxt.cartItems.length}
-                </span>
+                <span className={classes["cart-highlighter"]}>{count}</span>
               </li>
             </NavLink>
             <NavLink

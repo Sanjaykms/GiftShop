@@ -22,7 +22,7 @@ const OrderOverlay=(props)=>{
         <div class=" text-center " style={{zIndex:"999",background:"white",padding:"30px",position:"fixed",top:"50%",left:"50%",width:"50%",transform:"translate(-50%,-50%)"}}>
             <form class="container-fluid mb-5" style={{marginTop:"50px"}} onSubmit={(e)=>{e.preventDefault();props.orderHandler()}}>
             <div class="row " >
-              <h3 style={{marginBottom:"30px",color:"#0D6EFD"}}>ENTER DETAILS</h3>
+              <h3 style={{marginBottom:"30px",color:"#0D6EFD"}}>ENTER DETAILS TEST</h3>
             <div class="col-6 mb-5">
 
             <div id="orderName" class="input-group mb-3">

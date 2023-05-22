@@ -1,4 +1,4 @@
-import React ,{useState}from "react";
+import React, { useState } from "react";
 import Editthemes from "./Editthemes";
 import { MdDelete } from "react-icons/md";
 import { useThemeCxt } from "../Assets/themes-context";
@@ -36,22 +36,19 @@ export default function DisplayTheme() {
   const changeHandler = (e) => {
     setEnteredValue(e.target.value);
   };
-  const themeList = themeCxt.themeList
-    .filter((item) => {
-      return item.themeName.includes(enteredValue);
+  const themeList = themeCxt.themeList.filter((item) => {
+    return item.themeName.includes(enteredValue);
   });
   const deleteThemeHandler = (productId) => {
-    themeCxt.themeDispatchFn({
-      type: "DELETE_PRODUCT",
-      value: productId,
-    });
+    var condit = prompt("Delete?\nThen type 'YES'");
+    if (condit === "YES") {
+      themeCxt.themeDispatchFn({
+        type: "DELETE_PRODUCT",
+        value: productId,
+      });
+    }
   };
-  let tableBody = (
-    <TableData
-      data={themeList}
-      onDelete={deleteThemeHandler}
-    />
-  );
+  let tableBody = <TableData data={themeList} onDelete={deleteThemeHandler} />;
   return (
     <div
       className="container col-md-7 ms-3"
@@ -61,15 +58,27 @@ export default function DisplayTheme() {
         textAlign: "center",
       }}
     >
-      <div style={{padding:"10px",margin:"50px auto",boxShadow: "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px",borderRadius:"10px",width:"50%"}}>
+      <div
+        style={{
+          padding: "10px",
+          margin: "50px auto",
+          boxShadow:
+            "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px",
+          borderRadius: "10px",
+          width: "50%",
+        }}
+      >
         <input
           type="text"
-          placeholder="Type here to seach theme" style={{border: "2px solid grey",
+          placeholder="Type here to seach theme"
+          style={{
+            border: "2px solid grey",
             paddingLeft: "20px",
-            width: "100%"}}
+            width: "100%",
+          }}
           onChange={changeHandler}
         />
-      </div>  
+      </div>
       <div
         className="table-responsive"
         style={{
