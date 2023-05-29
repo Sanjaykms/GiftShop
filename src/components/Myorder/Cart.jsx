@@ -14,6 +14,7 @@ import useGenerateId from "../../Hooks/generate-id";
 const Cart = () => {
   const [ordeId, setOrderId] = useState("");
   const [priceVal, setPriceVal] = useState("");
+  const [themmeName, setThemmeName] = useState("");
   const [haveToEditProduct, setHaveToEditProduct] = useState({});
   const cartCxt = useCartCxt();
   const authCxt = useAuthCxt();
@@ -88,6 +89,9 @@ const Cart = () => {
   const themePrice = (val) => {
     setPriceVal(val);
   };
+  const themeNameHandler = (val) => {
+    setThemmeName(val);
+  };
   const placeOrderHandler = () => {
     const product = findProduct(ordeId);
     const exsistedProduct = {
@@ -106,6 +110,7 @@ const Cart = () => {
       url: product.url,
       status: "Order placed",
       themePrice: priceVal,
+      themeName: themmeName,
     };
     const orderedProduct1 = orderedProduct;
     orderedProduct1.totalAmount =
@@ -200,6 +205,7 @@ const Cart = () => {
               placeorder={placeOrderHandler}
               onClose={closeEditOverlayHandler}
               onThemeChange={themePrice}
+              onThemeNameChange={themeNameHandler}
             />
           }
         />

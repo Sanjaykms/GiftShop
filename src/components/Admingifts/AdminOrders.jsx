@@ -17,6 +17,7 @@ export default function AdminOrders(props) {
               <td>Order Id</td>
               <td>User Id</td>
               <td>Gift Name</td>
+              <td>Theme Name</td>
               <td>Quantity</td>
               <td>Total Price</td>
             </tr>
@@ -25,10 +26,13 @@ export default function AdminOrders(props) {
             {ordersCxt.orderItems.map((item, index) => {
               return (
                 <tr key={index} className={classes.tablerow}>
-                  <td><img src={item.url} alt="img"></img></td>
+                  <td>
+                    <img src={item.url} alt="img"></img>
+                  </td>
                   <td>{item.orderId}</td>
                   <td>{item.userId}</td>
-                  <td>{item.productName}</td>
+                  <td>{item.productName + " - $" + item.price}</td>
+                  <td>{item.themeName + " - $" + item.themePrice}</td>
                   <td>{item.quantity}</td>
                   <td>${item.totalAmount}</td>
                 </tr>
@@ -39,7 +43,7 @@ export default function AdminOrders(props) {
       </Card>
     );
   } else {
-    element = <EmptyPage message="No Orders placed yet :( " add="NIL"/>;
+    element = <EmptyPage message="No Orders placed yet :( " add="NIL" />;
   }
   return element;
 }

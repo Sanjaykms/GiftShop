@@ -4,6 +4,7 @@ import classes from "./Display.module.css";
 import Card from "../../ModalOverlay/Card";
 
 const Display = (props) => {
+  const them = props.themeInd == undefined ? "" : <div>Theme</div>;
   return (
     <Card clname={classes.width}>
       <header className={classes.header}>
@@ -13,6 +14,7 @@ const Display = (props) => {
         <div id="quantity" className={classes["header-div"]}>
           Quantity
         </div>
+        {them}
         <div id="price" className={classes["header-div"]}>
           Price
         </div>
@@ -22,6 +24,5 @@ const Display = (props) => {
     </Card>
   );
 };
-
 
 export default Display;

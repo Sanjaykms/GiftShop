@@ -1,22 +1,32 @@
 import React from "react";
 
-
 import { MdDelete } from "react-icons/md";
 import { MdModeEdit } from "react-icons/md";
-
 
 import classes from "./CartItem.module.css";
 
 const CartItem = (props) => {
   const qty = `${props.quantity} ps`;
-
-
+  const them =
+    props.themeName == undefined ? (
+      ""
+    ) : props.themeName === "" ? (
+      <div>No Theme</div>
+    ) : (
+      <div>{props.themeName + " - $" + props.themePrice}</div>
+    );
+  const proPrice =
+    props.price == undefined ? (
+      <div>{props.productName}</div>
+    ) : (
+      <div>{props.productName + " - $" + props.price}</div>
+    );
   return (
     <div className={classes["item-container"]}>
-      <div>{props.productName}</div>
+      {proPrice}
       <div>{qty}</div>
-      <div>${props.totalAmount}
-      </div>
+      {them}
+      <div>${props.totalAmount}</div>
       <div>
         <MdModeEdit
           color="blue"
@@ -44,7 +54,9 @@ const CartItem = (props) => {
         ) : (
           <button
             className={classes.cancel}
-            onClick={() => {props.onCancel(props.orderId, props.giftId, props.quantity)}}
+            onClick={() => {
+              props.onCancel(props.orderId, props.giftId, props.quantity);
+            }}
           >
             Cancel Order
           </button>
@@ -58,7 +70,6 @@ const CartItem = (props) => {
           </button>
         )}
       </div>
-
     </div>
   );
 };

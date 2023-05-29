@@ -144,7 +144,10 @@ const MyOrder = () => {
             giftId={item.giftId}
             productName={item.productName}
             totalAmount={item.totalAmount}
+            price={item.price}
             quantity={item.quantity}
+            themeName={item.themeName}
+            themePrice={item.themePrice}
             onOpen={openEditOverlayHandler}
             onCancel={removeHandler}
           />
@@ -158,7 +161,7 @@ const MyOrder = () => {
   };
 
   if (items.length > 0) {
-    element = <Display items={items} />;
+    element = <Display items={items} themeInd={1} />;
   } else {
     element = (
       <EmptyPage

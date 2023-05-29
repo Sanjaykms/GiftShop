@@ -86,9 +86,12 @@ const ViewProduct = () => {
   };
 
   const addToCartHandler = () => {
-    if (cartItems.length < 5) {
+    const NoofCartItem=cartItems.filter((item)=>{
+      return item.userId==authCxt.userInfo.userId;
+    })
+    if (NoofCartItem.length < 5) {
       const exsistedProduct = cartItems.find((item) => {
-        return product.giftId === item.giftId;
+        return product.giftId === item.giftId&&item.userId==authCxt.userInfo.userId;
       });
       const index = cartItems.indexOf(exsistedProduct);
       if (index >= 0) {
