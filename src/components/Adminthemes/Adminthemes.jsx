@@ -9,7 +9,6 @@ export default function AdminProducts() {
     <Fragment>
       <div className={classes.content}>
         <Displaytheme />
-        <br />
         <Addtheme />
       </div>
     </Fragment>

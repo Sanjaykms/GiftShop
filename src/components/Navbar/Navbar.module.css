@@ -2,7 +2,7 @@
 
 .header {
   border: none;
-  background-color: #0D6EFD;
+  background-color: #0d6efd;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   color: white;
   display: flex;
@@ -10,7 +10,6 @@
   justify-content: space-around;
   align-items: center;
   position: fixed;
-  height: 5rem;
   width: 100%;
   top: 0;
   z-index: 9999;
@@ -19,27 +18,42 @@
 .logout {
   border: none;
   border-radius: 10px;
-  background-color: #0D6EFD;
+  background-color: #0d6efd;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   color: white;
   height: 40px;
-  width: 10%;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 10px 0;
 }
 
 .navlinks {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  width: 50%;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
 }
-
+ul {
+  margin: 0;
+  padding: 0%;
+  margin: 0 10px;
+}
+a {
+  text-decoration: none;
+}
+ul a li {
+  font-size: 15px;
+}
 ul,
 li {
   color: white;
   font-weight: 400;
-  display: inline-block;
-  margin: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   transition: all 0.5s;
+  margin: 0 10px;
 }
 
 .navlinks li:hover {
@@ -51,11 +65,14 @@ li {
   cursor: pointer;
   font-size: 18px;
 }
+.logout {
+  font-size: 12px;
+}
 
 .active {
-  border-bottom: 5px groove rgb(255, 255, 255);
+  border-bottom: 3px groove rgb(255, 255, 255);
   color: rgb(240, 221, 197);
-  padding-bottom: 20px;
+  padding-bottom: 5px;
 }
 
 .logout:hover {
@@ -64,8 +81,9 @@ li {
 }
 
 .title {
-  font-size: 1.5rem;
+  font-size: 20px;
   font-weight: bold;
+  margin: 0;
 }
 
 .cart-highlighter {
@@ -75,7 +93,35 @@ li {
   color: rgb(240, 221, 197);
   display: inline-block;
   text-align: center;
-  margin-left: 10px;
-  height: 25px;
-  width: 25px;
+  margin-left: 5px;
+  height: 20px;
+  width: 20px;
+}
+
+@media (max-width: 700px) {
+  .title,
+  ul,
+  li {
+    font-size: 12px;
+  }
+  .active {
+    border-bottom: 1px groove rgb(255, 255, 255);
+    padding: 0%;
+  }
+  .cart-highlighter {
+    width: 15px;
+    height: 15px;
+    font-size: 10px;
+    padding-bottom: 0px;
+  }
+  .logout {
+    font-size: 8px;
+    height: auto;
+    width: auto;
+    padding: 7px;
+  }
+  ul a li {
+    font-size: 10px;
+    margin: 0 7px;
+  }
 }

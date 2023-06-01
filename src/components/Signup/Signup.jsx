@@ -109,7 +109,7 @@ const validate = (values) =>{
     return (
     <div class="text-center">
             <form onSubmit = {handleSubmit} className="sign">  
-    <div class="bg-primary  navbar-brand w-100 signin"> <span class ="navbar-brand bg-primary align-middle  text-light display2">Register</span></div>
+    <div class="bg-primary  navbar-brand w-100 signin"> <span class ="navbar-brand bg-primary align-middle  text-light display2">GiftShop</span></div>
         <br></br>
         <div className="sign1">
         <br></br>

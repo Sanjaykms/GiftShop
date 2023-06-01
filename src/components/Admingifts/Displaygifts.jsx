@@ -3,20 +3,22 @@ import Editgifts from "./Editgifts";
 import { MdDelete } from "react-icons/md";
 import { useProductsCxt } from "../Assets/products-context";
 import EmptyPage from "../Myorder/Display/EmptyPage";
+import classes from "./Displaygifts.module.css";
 
 const TableData = (props) => {
   return props.data.map((item) => (
     <tr key={item.giftId} style={{ backgroundColor: "white" }}>
       <td>
         <img
-          style={{ height: "80px", width: "80px", objectFit: "cover" }}
+          className={classes.img}
+          // style={{ height: "80px", width: "80px", objectFit: "cover" }}
           src={item.url}
           alt={item.productName}
         />
       </td>
-      <td style={{ fontSize: "120%" }}>{item.productName}</td>
-      <td style={{ fontSize: "120%" }}>${item.price}</td>
-      <td style={{ fontSize: "120%" }}>{item.quantity}</td>
+      <td className={classes.tableData}>{item.productName}</td>
+      <td className={classes.tableData}>${item.price}</td>
+      <td className={classes.tableData}>{item.quantity}</td>
       <td>
         <Editgifts item={item} cou={item.giftId} />
       </td>
@@ -24,13 +26,14 @@ const TableData = (props) => {
         <MdDelete
           onClick={() => props.onDelete(item.giftId)}
           id={"deleteProduct" + item.giftId}
-          style={{
-            marginLeft: "30px",
-            cursor: "pointer",
-            marginRight: "20px",
-            height: "25px",
-            width: "25px",
-          }}
+          // style={{
+          //   marginLeft: "30px",
+          //   cursor: "pointer",
+          //   marginRight: "20px",
+          //   height: "25px",
+          //   width: "25px",
+          // }}
+          className={classes.delete}
           color="red"
         />
       </td>
@@ -63,14 +66,14 @@ export default function DisplayProducts() {
   if (tableBody.props.data.length > 0) {
     element = (
       <div
-        className="table-responsive"
-        style={{
-          border: "none",
-          borderRadius: "15px",
-          overflow: "hidden",
-          boxShadow: "0 2px 16px rgba(0, 0, 0, 0.25)",
-          backgroundColor: "white",
-        }}
+        className={classes.innerDiv}
+        // style={{
+        //   border: "none",
+        //   borderRadius: "15px",
+        //   overflow: "hidden",
+        //   boxShadow: "0 2px 16px rgba(0, 0, 0, 0.25)",
+        //   backgroundColor: "white",
+        // }}
       >
         <table
           className="table table-hover"
@@ -78,11 +81,12 @@ export default function DisplayProducts() {
         >
           <thead>
             <tr
-              style={{
-                fontSize: "130%",
-                backgroundColor: "#0D6EFD",
-                color: "white",
-              }}
+              className={classes.tableHead}
+              // style={{
+              //   fontSize: "10px",
+              //   backgroundColor: "#0D6EFD",
+              //   color: "white",
+              // }}
             >
               <th scope="col">Image</th>
               <th scope="col">Gifts Name</th>
@@ -101,12 +105,15 @@ export default function DisplayProducts() {
   }
   return (
     <div
-      className="container col-md-7 ms-3"
-      style={{
-        float: "left",
-        fontFamily: "Montserrat, sans-serif ",
-        textAlign: "center",
-      }}
+      // className="container col-md-7 ms-3"
+      className={classes.container}
+      style={
+        {
+          // float: "left",
+          // fontFamily: "Montserrat, sans-serif ",
+          // textAlign: "center",
+        }
+      }
     >
       {element}
     </div>

@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { MdModeEdit } from "react-icons/md";
 import { useThemeCxt } from "../Assets/themes-context";
-
+import classes from "./Displaythemes.module.css";
 export default function EditPage({ item, onEditTheme, cou }) {
   const themeCxt = useThemeCxt();
   const [editThemeName, setEditThemeName] = useState(item.themeName);
@@ -31,14 +31,9 @@ export default function EditPage({ item, onEditTheme, cou }) {
         data-bs-target={"#modal" + cou}
         id={"editProduct" + cou}
         color="blue"
-        style={{
-          height: "25px",
-          width: "25px",
-          marginLeft: "10px",
-          cursor: "pointer",
-        }}
+        className={classes.edit}
       />
-      <div className="modal" id={"modal" + cou} style={{marginTop:"100px"}}>
+      <div className="modal" id={"modal" + cou} style={{ marginTop: "100px" }}>
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">

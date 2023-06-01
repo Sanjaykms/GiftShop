@@ -49,7 +49,7 @@ const Login = (props) => {
       <div class="bg-primary log">
         {" "}
         <span class="navbar-brand bg-primary align-middle  text-light display4">
-          Login
+         GiftShop
         </span>
       </div>
       <br></br>

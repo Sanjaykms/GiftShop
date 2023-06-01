@@ -7,7 +7,7 @@
 }
 
 .header {
-  background-color: #0D6EFD;
+  background-color: #0d6efd;
   color: white;
   font-size: 18px;
   height: 4rem;
@@ -15,7 +15,7 @@
   width: 100%;
   text-align: center;
 }
-img{
+img {
   width: 100px;
 }
 .content {
@@ -26,4 +26,20 @@ img{
   height: 5rem;
   border-bottom: 2px solid grey;
   border-width: 80%;
+}
+@media (max-width: 700px) {
+  .header {
+    height: auto;
+  }
+  .header tr td {
+    font-size: 8px;
+    padding: 5px 0;
+  }
+  .tablerow {
+    font-size: 8px;
+    height: 70px;
+  }
+  .tablerow img {
+    width: 50px;
+  }
 }

@@ -42,9 +42,7 @@ const CartItem = (props) => {
         {props?.place === "cart" ? (
           <MdDelete
             style={{
-              marginLeft: "30px",
               cursor: "pointer",
-              marginRight: "20px",
             }}
             color="red"
             onClick={() => {

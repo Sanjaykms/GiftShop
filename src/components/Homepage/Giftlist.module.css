@@ -1,7 +1,22 @@
 .container {
-    display: grid;
+  /* display: grid;
     grid-template-columns: auto auto auto;
     grid-row-gap: 50px;
     margin-top: 5rem;
-    padding: 3% 5% 5% 10%;
+    padding: 3% 5% 5% 10%; */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 120px;
+  margin-bottom: 100px;
+  padding: 0 5px;
+}
+@media (max-width: 700px) {
+  .container {
+    gap: 15px;
+    justify-content: space-evenly;
   }
+}

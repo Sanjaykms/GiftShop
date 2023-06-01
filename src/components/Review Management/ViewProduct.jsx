@@ -117,7 +117,7 @@ const ViewProduct = () => {
   return (
     <div className={classes.container}>
       <header>
-        <h1>Gift Info:</h1>
+        <h3>Gift Info:</h3>
       </header>
       <div className={classes.content}>
         <div className={classes["images-div"]}>

@@ -9,7 +9,6 @@ export default function AdminProducts() {
     <Fragment>
       <div className={classes.content}>
         <Displaygifts />
-        <br />
         <Addgifts />
       </div>
     </Fragment>

@@ -9,7 +9,7 @@ export default function AdminOrders(props) {
   let element;
   if (ordersCxt.orderItems.length > 0) {
     element = (
-      <Card clname={classes.width}>
+      <Card className={classes.width}>
         <table className={classes.table}>
           <thead className={classes.header}>
             <tr>

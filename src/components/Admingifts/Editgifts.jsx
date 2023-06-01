@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { MdModeEdit } from "react-icons/md";
 import { useProductsCxt } from "../Assets/products-context";
+import classes from "./Displaygifts.module.css";
 
 export default function EditPage({ item, onEditProduct, cou }) {
   const productsCxt = useProductsCxt();
@@ -18,7 +19,7 @@ export default function EditPage({ item, onEditProduct, cou }) {
       productName: editProductName,
       price: editCost,
       quantity: editQuantity,
-      giftDetails:giftDetails,
+      giftDetails: giftDetails,
     };
     productsCxt.productsDispatchFn({
       type: "EDIT_PRODUCT",
@@ -34,14 +35,9 @@ export default function EditPage({ item, onEditProduct, cou }) {
         data-bs-target={"#modal" + cou}
         id={"editProduct" + cou}
         color="blue"
-        style={{
-          height: "25px",
-          width: "25px",
-          marginLeft: "10px",
-          cursor: "pointer",
-        }}
+        className={classes.edit}
       />
-      <div className="modal" id={"modal" + cou} style={{marginTop:"100px"}}>
+      <div className="modal" id={"modal" + cou} style={{ marginTop: "80px" }}>
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">

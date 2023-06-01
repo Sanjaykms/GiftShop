@@ -2,11 +2,12 @@
   padding: 20px;
   width: 40%;
   height: 70px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .width input {
   border: 2px solid grey;
-  padding-left: 20px;
   width: 100%;
 }
 
@@ -17,13 +18,26 @@
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
   margin: auto;
   overflow: hidden;
-  width: 50%;
+  width: 70%;
   margin-top: 2rem;
   padding: 20px;
+  margin-bottom: 100px;
 }
 
 .empty {
   padding-top: 40px;
   text-align: center;
   height: 100px;
+}
+@media (max-width: 700px) {
+  .width {
+    height: auto;
+    width: 80%;
+    border-radius: 12px;
+    padding: 10px;
+  }
+  .content {
+    width: 95%;
+    padding: 8px;
+  }
 }

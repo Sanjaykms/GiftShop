@@ -5,40 +5,16 @@ import ReactDom from "react-dom";
 import { Fragment } from "react";
 import { useThemeCxt } from "../Assets/themes-context";
 import { useState } from "react";
+import classes from "./Placeorder.module.css";
 export const Backdrop = (props) => {
-  return (
-    <div
-      onClick={props.onClose}
-      style={{
-        backgroundColor: "rgba(0, 0, 0, 0.25)",
-        position: "fixed",
-        top: "0",
-        bottom: "0",
-        left: "0",
-        right: "0",
-        zIndex: "100",
-      }}
-    ></div>
-  );
+  return <div onClick={props.onClose} className={classes.onClose}></div>;
 };
 const OrderOverlay = (props) => {
   const themeCxt = useThemeCxt();
   const { productVal } = props;
   const [addTheme, setAddTheme] = useState(0);
   return (
-    <div
-      class=" text-center "
-      style={{
-        zIndex: "999",
-        background: "white",
-        padding: "30px",
-        position: "fixed",
-        top: "50%",
-        left: "50%",
-        width: "50%",
-        transform: "translate(-50%,-50%)",
-      }}
-    >
+    <div className={classes["text-center"]}>
       <form
         class="container-fluid mb-5"
         style={{ marginTop: "50px" }}
@@ -52,7 +28,7 @@ const OrderOverlay = (props) => {
             ENTER DETAILS TEST
           </h3>
           <div class="col-6 mb-5">
-            <div id="orderName" class="input-group mb-3">
+            <div id="orderName" class="input-group mb-2">
               <input
                 type="text"
                 class="form-control"
@@ -62,7 +38,7 @@ const OrderOverlay = (props) => {
               ></input>
             </div>
 
-            <div id="orderDate" class="input-group mb-3">
+            <div id="orderDate" class="input-group mb-2">
               <input
                 placeholder="Enter the order date"
                 type="date"
@@ -72,7 +48,7 @@ const OrderOverlay = (props) => {
               ></input>
             </div>
 
-            <div id="orderAddress" class="input-group mb-3">
+            <div id="orderAddress" class="input-group mb-2">
               <input
                 type="address"
                 class="form-control"
@@ -82,7 +58,7 @@ const OrderOverlay = (props) => {
               ></input>
             </div>
 
-            <div id="orderPhoneNo" class="input-group mb-3">
+            <div id="orderPhoneNo" class="input-group mb-2">
               <input
                 type="mobilenumber"
                 class="form-control"
@@ -91,7 +67,7 @@ const OrderOverlay = (props) => {
               ></input>
             </div>
 
-            <div id="orderEmailId" class="input-group mb-3">
+            <div id="orderEmailId" class="input-group mb-2">
               <input
                 type="email"
                 class="form-control"
@@ -103,7 +79,7 @@ const OrderOverlay = (props) => {
           </div>
 
           <div class="col-6">
-            <div id="orderPrice" class="input-group mb-3">
+            <div id="orderPrice" class="input-group mb-2">
               <input
                 type="text"
                 class="form-control"
@@ -150,7 +126,7 @@ const OrderOverlay = (props) => {
                   setAddTheme(e.target.value);
                 }}
               >
-                <option selected hidden>
+                <option selected hidden value="0">
                   Select theme
                 </option>
                 {themeCxt.themeList.map((item, index) => {

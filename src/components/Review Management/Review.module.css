@@ -26,3 +26,12 @@
     top:0;
     right: 0px;
   }
+    @media (max-width: 700px){
+      .name, .comment{
+        font-size:10px;
+      }
+       .icon{
+         width:12px;
+         height:12px;
+       }
+    }

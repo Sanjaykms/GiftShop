@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Button from "../ModalOverlay/Button";
+import classes from "./Addgifts.module.css";
 import { useProductsCxt } from "../Assets/products-context";
 import useGenerateId from "../../Hooks/generate-id";
 export default function AddItem() {
@@ -11,7 +12,7 @@ export default function AddItem() {
   const [quantity, setQuantity] = useState("");
   const [giftDetails, setGiftDetails] = useState("");
   const submit = (e) => {
-     e.preventDefault();
+    e.preventDefault();
     if (
       image !== "" &&
       productName !== "" &&
@@ -24,10 +25,13 @@ export default function AddItem() {
         url: image,
         productName: productName,
         price: cost,
-        giftDetails:giftDetails,
+        giftDetails: giftDetails,
         quantity: quantity,
       };
-      productsCxt.productsDispatchFn({ type: "ADD_PRODUCT", value: newProduct });
+      productsCxt.productsDispatchFn({
+        type: "ADD_PRODUCT",
+        value: newProduct,
+      });
 
       setImage("");
       setProductName("");
@@ -41,29 +45,22 @@ export default function AddItem() {
 
   return (
     <div
-      className="container col-md-4"
+      className={classes.container}
       id="AddItem"
-      style={{
-        float: "right",
-        marginRight: "3%",
-        marginTop: "-30px",
-        borderRadius: "15px",
-        overflow: "hidden",
-        backgroundColor: "#0D6EFD",
-      }}
+      // style={{
+      //   // float: "right",
+      //   // marginRight: "3%",
+      //   // marginTop: "-30px",
+      //   borderRadius: "15px",
+      //   // overflow: "hidden",
+      //   backgroundColor: "#0D6EFD",
+      // }}
     >
       <form onSubmit={submit}>
-        <header
-          style={{
-            height: "60px",
-            textAlign: "center",
-            color: "white",
-            paddingTop: "30px",
-          }}
-        >
+        <header className={classes.header}>
           <h2>Add Gifts</h2>
         </header>
-        <div className="my-5">
+        <div className="my-3">
           <input
             className="form-control"
             id="enterProductName"
@@ -79,7 +76,7 @@ export default function AddItem() {
             onChange={(e) => setProductName(e.target.value)}
           />
         </div>
-        <div className="my-5">
+        <div className="my-3">
           <input
             className="form-control"
             id="enterProductPrice"
@@ -95,7 +92,7 @@ export default function AddItem() {
             onChange={(e) => setCost(e.target.value)}
           />
         </div>
-        <div className="my-5">
+        <div className="my-3">
           <input
             className="form-control"
             id="enterProductImageUrl"
@@ -111,7 +108,7 @@ export default function AddItem() {
             onChange={(e) => setImage(e.target.value)}
           />
         </div>
-        <div className="my-5">
+        <div className="my-3">
           <input
             className="form-control"
             id="enterProductQuantity"
@@ -127,7 +124,7 @@ export default function AddItem() {
             onChange={(e) => setQuantity(e.target.value)}
           />
         </div>
-        <div className="my-5">
+        <div className="my-3">
           <input
             className="form-control"
             id="enterProductQuantity"
@@ -143,7 +140,7 @@ export default function AddItem() {
             onChange={(e) => setGiftDetails(e.target.value)}
           />
         </div>
-        <div className="my-5" style={{ textAlign: "center" }}>
+        <div className="my-3" style={{ textAlign: "center" }}>
           <Button id="addProductButton">Add</Button>
         </div>
       </form>

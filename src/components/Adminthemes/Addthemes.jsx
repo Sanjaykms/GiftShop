@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "../ModalOverlay/Button";
 import { useThemeCxt } from "../Assets/themes-context";
 import useGenerateId from "../../Hooks/generate-id";
+import classes from "./Addthemes.module.css";
 export default function AddItem() {
   const themeCxt = useThemeCxt();
   const [themeName, setThemeName] = useState("");
@@ -28,29 +29,28 @@ export default function AddItem() {
 
   return (
     <div
-      className="container col-md-4"
+      className={classes.container}
       id="AddTheme"
-      style={{
-        float: "right",
-        marginRight: "3%",
-        marginTop: "-30px",
-        borderRadius: "15px",
-        overflow: "hidden",
-        backgroundColor: "#0D6EFD",
-      }}
+      // style={{
+      //   padding: "5px",
+      //   borderRadius: "15px",
+      //   overflow: "hidden",
+      //   backgroundColor: "#0D6EFD",
+      // }}
     >
       <form onSubmit={submit}>
         <header
-          style={{
-            height: "60px",
-            textAlign: "center",
-            color: "white",
-            paddingTop: "30px",
-          }}
+          className={classes.header}
+          // style={{
+          //   height: "60px",
+          //   textAlign: "center",
+          //   color: "white",
+          //   paddingTop: "30px",
+          // }}
         >
           <h2>Add Theme</h2>
         </header>
-        <div className="my-5">
+        <div className="my-3">
           <input
             className="form-control"
             id="enterThemeName"
@@ -66,7 +66,7 @@ export default function AddItem() {
             onChange={(e) => setThemeName(e.target.value)}
           />
         </div>
-        <div className="my-5">
+        <div className="my-3">
           <input
             className="form-control"
             id="enterThemePrice"
@@ -82,7 +82,7 @@ export default function AddItem() {
             onChange={(e) => setCost(e.target.value)}
           />
         </div>
-        <div className="my-5">
+        <div className="my-3">
           <input
             className="form-control"
             id="enterThemeDescription"
@@ -98,7 +98,7 @@ export default function AddItem() {
             onChange={(e) => setThemeDesc(e.target.value)}
           />
         </div>
-        <div className="my-5" style={{ textAlign: "center" }}>
+        <div className="my-3" style={{ textAlign: "center" }}>
           <Button id="add">Add</Button>
         </div>
       </form>

@@ -1,3 +1,8 @@
 .content {
-    margin-top: 7rem;
-  }
+  margin: 100px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 20px;
+  flex-wrap: wrap;
+}

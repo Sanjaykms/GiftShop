@@ -1,0 +1,64 @@
+.container {
+  font-family: Montserrat, sans-serif;
+  text-align: center;
+}
+.innerDiv {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
+  background-color: white;
+}
+.innerDiv table tbody td {
+  padding: 10px;
+}
+.innerDiv table thead th {
+  padding: 10px;
+}
+.tableData {
+  font-size: 20px;
+}
+.tableHead {
+  font-size: 20px;
+  background-color: #0d6efd;
+  color: white;
+}
+.delete {
+  cursor: pointer;
+  height: 25px;
+  width: 25px;
+}
+.edit {
+  cursor: pointer;
+  height: 25px;
+  width: 25px;
+}
+.img {
+  height: 80px;
+  width: 80px;
+  object-fit: cover;
+}
+.tableHead > th {
+  padding: 10px;
+}
+@media (max-width: 700px) {
+  .tableHead {
+    font-size: 10px;
+  }
+  .innerDiv table tbody td {
+    padding: 3px;
+    width: fit-content;
+  }
+  .innerDiv table thead th {
+    padding: 5px;
+    width: 50px;
+  }
+  .tableData {
+    font-size: 10px;
+  }
+  .delete,
+  .edit {
+    width: 10px;
+    height: auto;
+  }
+}

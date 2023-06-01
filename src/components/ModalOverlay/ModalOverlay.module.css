@@ -13,14 +13,15 @@
 .container {
   font-family: "Montserrat", sans-serif;
   position: fixed;
-  top: 1rem;
-  left: 22rem;
+  top: 150px;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 50%;
   z-index: 100;
 }
 
 .header {
-  background-color: #0D6EFD;
+  background-color: #0d6efd;
   color: white;
   font-weight: bold;
   font-size: 2rem;
@@ -33,6 +34,7 @@
   display: flex;
   flex-direction: row;
   text-align: center;
+  justify-content: center;
 }
 
 .img-div {
@@ -43,6 +45,7 @@
 .img {
   height: 150px;
   width: 150px;
+  object-fit: cover;
 }
 
 .info {
@@ -64,33 +67,35 @@
   margin-left: 10px;
   border: 2px solid #5c9dff;
   border-radius: 10px;
-  color: #0D6EFD;
+  color: #0d6efd;
   font-size: 25px;
   height: 50px;
   width: 40px;
 }
 
 .btns button:hover {
-  background-color: #0D6EFD;
+  background-color: #0d6efd;
   color: white;
 }
 
 .footer {
-  text-align: right;
-  padding-bottom: 20px;
-  padding-right: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .footer button {
   border-radius: 10px;
-  margin-left: 20px;
-  height: 40px;
-  width: 100px;
+  height: auto;
+  width: auto;
+  padding: 10px;
 }
 
 .save {
   border: none;
-  background-color: #0D6EFD;
+  background-color: #0d6efd;
   color: white;
 }
 
@@ -104,7 +109,38 @@
 }
 
 .close:hover {
-  border: none;
-  background-color: #0D6EFD;
+  border: 2px solid white;
+  background-color: #0d6efd;
   color: white;
+}
+@media (max-width: 700px) {
+  .container {
+    width: 80vw;
+  }
+  .header {
+    font-size: 12px;
+    height: auto;
+    padding: 10px;
+  }
+  .img-div {
+    margin: 10px;
+  }
+  .img {
+    width: 80px;
+    height: auto;
+  }
+  .info {
+    font-size: 10px;
+  }
+  .btns button {
+    font-size: 12px;
+    margin-top: 20px;
+    padding: 5px;
+    height: auto;
+    width: auto;
+  }
+  .footer button {
+    font-size: 8px;
+    padding: 5px 8px;
+  }
 }

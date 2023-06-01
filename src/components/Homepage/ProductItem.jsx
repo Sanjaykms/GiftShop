@@ -25,7 +25,7 @@ function ProductItem(props) {
         <h3>${product.price}</h3>
       </div>
       <div className={classes.footer}>
-        <Button onClick={() => viewProductHandler(product.giftId)}>
+        <Button onClick={() => viewProductHandler(product.giftId)} className={classes.viewGift}>
           View Gift
         </Button>
       </div>

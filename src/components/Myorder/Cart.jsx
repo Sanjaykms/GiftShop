@@ -13,8 +13,8 @@ import Placeorder from "../Placeorder/Placeorder";
 import useGenerateId from "../../Hooks/generate-id";
 const Cart = () => {
   const [ordeId, setOrderId] = useState("");
-  const [priceVal, setPriceVal] = useState("");
-  const [themmeName, setThemmeName] = useState("");
+  const [priceVal, setPriceVal] = useState(0);
+  const [themmeName, setThemmeName] = useState("0");
   const [haveToEditProduct, setHaveToEditProduct] = useState({});
   const cartCxt = useCartCxt();
   const authCxt = useAuthCxt();

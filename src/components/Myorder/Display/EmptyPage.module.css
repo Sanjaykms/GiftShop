@@ -1,11 +1,21 @@
 .width {
-    text-align: center;
-    font-weight: bold;
-    font-size: 20px;
-    padding: 50px;
-    width: 50%;
-  }
-  
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 50px;
+  width: 50%;
+}
+
+.width p {
+  margin-bottom: 20px;
+}
+@media (max-width: 700px) {
   .width p {
-    margin-bottom: 20px;
+    font-size: 12px;
   }
+  .width {
+    padding: 10px;
+    margin: auto;
+    margin-top: 100px;
+  }
+}

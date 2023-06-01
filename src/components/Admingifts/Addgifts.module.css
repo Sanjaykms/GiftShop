@@ -1,0 +1,22 @@
+.container {
+  border-radius: 15px;
+  background-color: #0d6efd;
+  padding: 20px;
+}
+.container .header {
+  text-align: center;
+  color: white;
+  padding: 10px;
+  height: auto;
+}
+.container div input {
+  font-size: 18px;
+}
+@media (max-width: 700px) {
+  .container {
+    padding: 10px;
+  }
+  .container div input {
+    font-size: 10px;
+  }
+}
