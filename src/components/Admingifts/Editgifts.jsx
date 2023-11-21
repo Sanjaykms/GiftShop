@@ -37,7 +37,11 @@ export default function EditPage({ item, onEditProduct, cou }) {
         color="blue"
         className={classes.edit}
       />
-      <div className="modal" id={"modal" + cou} style={{ marginTop: "80px" }}>
+      <div
+        className="modal"
+        id={"modal" + cou}
+        style={{ paddingTop: "80px", zIndex: "99999" }}
+      >
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">

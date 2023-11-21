@@ -59,7 +59,7 @@ const userReducer = (prevState, action) => {
       },
       body: JSON.stringify(newUser),
     };
-    fetch("https://evfmjj-8000.csb.app/usersadd", options)
+    fetch("https://giftshopbackend.onrender.com/usersadd", options)
       .then((response) => response.json())
       .then((response) => console.log(response))
       .catch((err) => console.error(err));
@@ -78,7 +78,7 @@ const userReducer = (prevState, action) => {
       },
       body: JSON.stringify(action.value),
     };
-    fetch("https://evfmjj-8000.csb.app/usersupdate", options)
+    fetch("https://giftshopbackend.onrender.com/usersupdate", options)
       .then((response) => response.json())
       .then((response) => console.log(response))
       .catch((err) => console.error(err));
@@ -97,7 +97,7 @@ const userReducer = (prevState, action) => {
       },
       body: JSON.stringify(newVal),
     };
-    fetch("https://evfmjj-8000.csb.app/usersdelete", options)
+    fetch("https://giftshopbackend.onrender.com/usersdelete", options)
       .then((response) => response.json())
       .then((response) => console.log(response))
       .catch((err) => console.error(err));
@@ -115,7 +115,7 @@ const userReducer = (prevState, action) => {
 
 const UserContextProvider = (props) => {
   useEffect(() => {
-    fetch("https://evfmjj-8000.csb.app/users") // Replace with your API URL
+    fetch("https://giftshopbackend.onrender.com/users") // Replace with your API URL
       .then((response) => response.json())
       .then((data) => {
         userDispatchFn({ type: "GET_USERS", value: data });

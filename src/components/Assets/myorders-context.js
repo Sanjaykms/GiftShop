@@ -24,7 +24,7 @@ const myordersReducer = (prevState, action) => {
       },
       body: JSON.stringify(newOrder),
     };
-    fetch("https://evfmjj-8000.csb.app/ordersadd", options)
+    fetch("https://giftshopbackend.onrender.com/ordersadd", options)
       .then((response) => response.json())
       .then((response) => console.log(response))
       .catch((err) => console.error(err));
@@ -45,7 +45,7 @@ const myordersReducer = (prevState, action) => {
       },
       body: JSON.stringify(action.value),
     };
-    fetch("https://evfmjj-8000.csb.app/ordersupdate", options)
+    fetch("https://giftshopbackend.onrender.com/ordersupdate", options)
       .then((response) => response.json())
       .then((response) => console.log(response))
       .catch((err) => console.error(err));
@@ -65,7 +65,7 @@ const myordersReducer = (prevState, action) => {
       },
       body: JSON.stringify(newVal),
     };
-    fetch("https://evfmjj-8000.csb.app/ordersdelete", options)
+    fetch("https://giftshopbackend.onrender.com/ordersdelete", options)
       .then((response) => response.json())
       .then((response) => console.log(response))
       .catch((err) => console.error(err));
@@ -84,7 +84,7 @@ const myordersReducer = (prevState, action) => {
 // MyOrdersContext Provider
 export const MyOrdersContextProvider = (props) => {
   useEffect(() => {
-    fetch("https://evfmjj-8000.csb.app/orders") // Replace with your API URL
+    fetch("https://giftshopbackend.onrender.com/orders") // Replace with your API URL
       .then((response) => response.json())
       .then((data) => {
         myordersDispatchFn({ type: "GET_ORDERS", value: data });

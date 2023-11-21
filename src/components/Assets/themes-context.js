@@ -54,7 +54,7 @@ const themeReducer = (prevState, action) => {
       },
       body: JSON.stringify(newtheme),
     };
-    fetch("https://evfmjj-8000.csb.app/themesadd", options)
+    fetch("https://giftshopbackend.onrender.com/themesadd", options)
       .then((response) => response.json())
       .then((response) => console.log(response))
       .catch((err) => console.error(err));
@@ -75,7 +75,7 @@ const themeReducer = (prevState, action) => {
       },
       body: JSON.stringify(action.value),
     };
-    fetch("https://evfmjj-8000.csb.app/themesupdate", options)
+    fetch("https://giftshopbackend.onrender.com/themesupdate", options)
       .then((response) => response.json())
       .then((response) => console.log(response))
       .catch((err) => console.error(err));
@@ -95,7 +95,7 @@ const themeReducer = (prevState, action) => {
       },
       body: JSON.stringify(newVal),
     };
-    fetch("https://evfmjj-8000.csb.app/themesdelete", options)
+    fetch("https://giftshopbackend.onrender.com/themesdelete", options)
       .then((response) => response.json())
       .then((response) => console.log(response))
       .catch((err) => console.error(err));
@@ -124,7 +124,7 @@ const themeReducer = (prevState, action) => {
       },
       body: JSON.stringify(tempProduct),
     };
-    fetch("https://evfmjj-8000.csb.app/themesupdate", options)
+    fetch("https://giftshopbackend.onrender.com/themesupdate", options)
       .then((response) => response.json())
       .then((response) => console.log(response))
       .catch((err) => console.error(err));
@@ -150,7 +150,7 @@ const themeReducer = (prevState, action) => {
       },
       body: JSON.stringify(action.value),
     };
-    fetch("https://evfmjj-8000.csb.app/themesupdate", options)
+    fetch("https://giftshopbackend.onrender.com/themesupdate", options)
       .then((response) => response.json())
       .then((response) => console.log(response))
       .catch((err) => console.error(err));
@@ -163,7 +163,7 @@ const themeReducer = (prevState, action) => {
 
 export const ThemeContextProvider = (props) => {
   useEffect(() => {
-    fetch("https://evfmjj-8000.csb.app/themes") // Replace with your API URL
+    fetch("https://giftshopbackend.onrender.com/themes") // Replace with your API URL
       .then((response) => response.json())
       .then((data) => {
         themeDispatchFn({ type: "GET_PRODUCT", value: data });

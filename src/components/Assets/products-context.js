@@ -88,7 +88,7 @@ const productsReducer = (prevState, action) => {
       },
       body: JSON.stringify(newProduct),
     };
-    fetch("https://evfmjj-8000.csb.app/productsadd", options)
+    fetch("https://giftshopbackend.onrender.com/productsadd", options)
       .then((response) => response.json())
       .then((response) => console.log(response))
       .catch((err) => console.error(err));
@@ -108,7 +108,7 @@ const productsReducer = (prevState, action) => {
       },
       body: JSON.stringify(action.value),
     };
-    fetch("https://evfmjj-8000.csb.app/productsupdate", options)
+    fetch("https://giftshopbackend.onrender.com/productsupdate", options)
       .then((response) => response.json())
       .then((response) => console.log(response))
       .catch((err) => console.error(err));
@@ -129,7 +129,7 @@ const productsReducer = (prevState, action) => {
       },
       body: JSON.stringify(newPro),
     };
-    fetch("https://evfmjj-8000.csb.app/productsdelete", options)
+    fetch("https://giftshopbackend.onrender.com/productsdelete", options)
       .then((response) => response.json())
       .then((response) => console.log(response))
       .catch((err) => console.error(err));
@@ -147,7 +147,7 @@ const productsReducer = (prevState, action) => {
 
 export const ProductsContextProvider = (props) => {
   useEffect(() => {
-    fetch("https://evfmjj-8000.csb.app/products") // Replace with your API URL
+    fetch("https://giftshopbackend.onrender.com/products") // Replace with your API URL
       .then((response) => response.json())
       .then((data) => {
         productsDispatchFn({ type: "GET_PRODUCTS", value: data });

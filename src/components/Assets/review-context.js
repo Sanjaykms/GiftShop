@@ -41,7 +41,7 @@ const reviewReducer = (state, action) => {
         },
         body: JSON.stringify(newReview),
       };
-      fetch("https://evfmjj-8000.csb.app/reviewsadd", options)
+      fetch("https://giftshopbackend.onrender.com/reviewsadd", options)
         .then((response) => response.json())
         .then((response) => console.log(response))
         .catch((err) => console.error(err));
@@ -62,7 +62,7 @@ const reviewReducer = (state, action) => {
         },
         body: JSON.stringify(action.value),
       };
-      fetch("https://evfmjj-8000.csb.app/reviewsupdate", options2)
+      fetch("https://giftshopbackend.onrender.com/reviewsupdate", options2)
         .then((response) => response.json())
         .then((response) => console.log(response))
         .catch((err) => console.error(err));
@@ -82,7 +82,7 @@ const reviewReducer = (state, action) => {
         },
         body: JSON.stringify(newRev),
       };
-      fetch("https://evfmjj-8000.csb.app/reviewsdelete", options3)
+      fetch("https://giftshopbackend.onrender.com/reviewsdelete", options3)
         .then((response) => response.json())
         .then((response) => console.log(response))
         .catch((err) => console.error(err));
@@ -99,7 +99,7 @@ const reviewReducer = (state, action) => {
 
 export const ReviewContextProvider = (props) => {
   useEffect(() => {
-    fetch("https://evfmjj-8000.csb.app/reviews") // Replace with your API URL
+    fetch("https://giftshopbackend.onrender.com/reviews") // Replace with your API URL
       .then((response) => response.json())
       .then((data) => {
         reviewDispatchFn({ type: "GET_REVIEWS", value: data });

@@ -29,7 +29,7 @@ const cartReducer = (prevState, action) => {
       },
       body: JSON.stringify(newCart),
     };
-    fetch("https://evfmjj-8000.csb.app/cartsadd", options)
+    fetch("https://giftshopbackend.onrender.com/cartsadd", options)
       .then((response) => response.json())
       .then((response) => console.log(response))
       .catch((err) => console.error(err));
@@ -55,7 +55,7 @@ const cartReducer = (prevState, action) => {
       },
       body: JSON.stringify(action.value),
     };
-    fetch("https://evfmjj-8000.csb.app/cartsupdate", options)
+    fetch("https://giftshopbackend.onrender.com/cartsupdate", options)
       .then((response) => response.json())
       .then((response) => console.log(response))
       .catch((err) => console.error(err));
@@ -74,7 +74,7 @@ const cartReducer = (prevState, action) => {
       },
       body: JSON.stringify(newVal),
     };
-    fetch("https://evfmjj-8000.csb.app/cartsdelete", options)
+    fetch("https://giftshopbackend.onrender.com/cartsdelete", options)
       .then((response) => response.json())
       .then((response) => console.log(response))
       .catch((err) => console.error(err));
@@ -93,7 +93,7 @@ const cartReducer = (prevState, action) => {
 // Cart Context Provider
 export const CartContextProvider = (props) => {
   useEffect(() => {
-    fetch("https://evfmjj-8000.csb.app/carts") // Replace with your API URL
+    fetch("https://giftshopbackend.onrender.com/carts") // Replace with your API URL
       .then((response) => response.json())
       .then((data) => {
         cartDispatchFn({ type: "GET_CART_ITEMS", value: data });
